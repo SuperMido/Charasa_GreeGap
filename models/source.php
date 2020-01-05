@@ -8,7 +8,7 @@ class Source
     public $create_at;
     public $hash;
 
-    function __constructor($id, $providerid, $name, $des, $create_at, $hash)
+    function __construct($id, $providerid, $name, $des, $create_at, $hash)
     {
         $this->id = $id;
         $this->providerid = $providerid;
@@ -23,14 +23,33 @@ class Source
         // Find in DB with hash
     }
 
-    function execHash()
+    static function findbyUser($userid)
     {
-        $hash = hash('sha256', $this->id . $this->providerid . $this->name . $this->des . $this->create_at);
+        $list = [];
+        // Find added source by user id
+        $db = DB::getInstance();
+        $req = $db->prepare("SELECT * FROM source WHERE providerid = :userid;");
+        $req->bindValue(':userid',$userid);
+        $req->execute();
+        foreach ($req->fetchAll() as $item) {
+            $list[] = new Source($item['id'], $item['providerid'], $item['name'], $item['des'], $item['create_at'], $item['hash']);
+        }
+        return $list;
     }
 
-    function insertDB()
+    static function add($providerid, $name, $des)
     {
+        $date = getCurrentDate();
+        $hash = hash('sha256', $providerid . $name . $des . $date);
         //Add source to database
+        $db = DB::getInstance();
+        $req = $db->prepare("INSERT INTO source(providerid, name, des, create_at, hash)  VALUES (:providerid, :name, :des, :create_at, :hash);");
+        $req->bindValue(':providerid', $providerid);
+        $req->bindValue(':name', $name);
+        $req->bindValue(':des', $des);
+        $req->bindValue(':create_at', $date);
+        $req->bindValue(':hash', $hash);
+        $req->execute();
     }
 }
 ?>

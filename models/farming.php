@@ -12,7 +12,7 @@ class Farming
     public $pre_hash;
     public $hash;
 
-    function __constructor($id, $name, $des, $avg_temp, $avg_hum, $avg_humS, $create_at, $update_at, $pre_hash, $hash)
+    function __construct($id, $name, $des, $avg_temp, $avg_hum, $avg_humS, $create_at, $update_at, $pre_hash, $hash)
     {
         $this->id = $id;
         $this->name = $name;

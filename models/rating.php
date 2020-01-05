@@ -6,7 +6,7 @@ class Rating
     public $productid;
     public $create_at;
 
-    function __constructor($id, $userid, $productid, $create_at)
+    function __construct($id, $userid, $productid, $create_at)
     {
         $this->id = $id;
         $this->userid = $userid;

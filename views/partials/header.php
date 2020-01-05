@@ -39,7 +39,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <ul class="nav navbar-nav d-md-down-none">
-        <li class="nav-item px-3">Hello <?= $_SESSION['role'] ?>!
+        <li class="nav-item px-3">Hello <? //$_SESSION['role'] ?>!
         </li>
         <li class="nav-item px-3"><a class="nav-link" href="./logout.php">Log out</a>
         </li>

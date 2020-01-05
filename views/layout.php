@@ -2,8 +2,8 @@
   <div class="sidebar">
     <nav class="sidebar-nav">
       <ul class="nav">
-        <?php if($_SESSION['role']=='Administrator') {?>
-        <li class="nav-item">
+        <?php //if($_SESSION['role']=='Administrator') {?>
+        <!--<li class="nav-item">
           <a class="nav-link" href="./?controller=trainer">
             <i class="nav-icon icon-user"></i> Trainers</a>
         </li>
@@ -11,8 +11,8 @@
           <a class="nav-link" href="./?controller=staff">
             <i class="nav-icon icon-user"></i> Staffs</a>
         </li>
-        <?php } ?>
-        <?php if($_SESSION['role']=='Staff') {?>
+        <?php //} ?>
+        <?php //if($_SESSION['role']=='Staff') {?>
         <li class="nav-item">
           <a class="nav-link" href="./?controller=trainee">
             <i class="nav-icon icon-user"></i> Trainees</a>
@@ -33,8 +33,8 @@
           <a class="nav-link" href="./?controller=trainer">
             <i class="nav-icon icon-user"></i> Trainers</a>
         </li>
-        <?php } ?>
-        <?php if($_SESSION['role']=='Trainer') {?>
+        <?php //} ?>
+        <?php //if($_SESSION['role']=='Trainer') {?>
         <li class="nav-item">
           <a class="nav-link" href="./?controller=topic&action=inprogress">
             <i class="nav-icon icon-pencil"></i> Assigned Topic</a>
@@ -43,8 +43,8 @@
           <a class="nav-link" href="./?controller=trainer&action=detail">
             <i class="nav-icon icon-user"></i> Edit information</a>
         </li>
-        <?php } ?>
-        <?php if($_SESSION['role']=='Trainee') {?>
+        <?php //} ?>
+        <?php //if($_SESSION['role']=='Trainee') {?>
         <li class="nav-item">
           <a class="nav-link" href="./?controller=course&action=inprogress">
             <i class="nav-icon icon-pencil"></i> Assigned Course</a>
@@ -52,8 +52,8 @@
         <li class="nav-item">
           <a class="nav-link" href="./?controller=trainee&action=detail">
             <i class="nav-icon icon-user"></i> My Information</a>
-        </li>
-        <?php } ?>
+        </li>-->
+        <?php //} ?>
       </ul>
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>

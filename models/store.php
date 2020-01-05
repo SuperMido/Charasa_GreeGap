@@ -8,7 +8,7 @@ class Store
     public $pre_hash;
     public $hash;
 
-    function __constructor($id, $name, $des, $create_at, $pre_hash, $hash)
+    function __construct($id, $name, $des, $create_at, $pre_hash, $hash)
     {
         $this->id = $id;
         $this->name = $name;

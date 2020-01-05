@@ -1,42 +1,45 @@
 <?php
 	$controllers = NULL;
-	switch ($_SESSION['role'])
-	{
-		case 'Administrator':
-			$controllers = array(
-			  'pages' => ['home', 'error'],
-			  'trainer' => ['index', 'update', 'delete', 'show', 'add'],
-			  'staff' => ['index', 'update', 'delete', 'show', 'add']
-			);
-			break;
-		case 'Staff':
-			$controllers = array(
-			  'pages' => ['home', 'error'],
-			  'category' => ['index', 'update', 'delete', 'show', 'add'],
-			  'trainer' => ['index', 'update', 'delete', 'show', 'add'],
-			  'topic' => ['index', 'update', 'delete', 'show', 'add'],
-			  'trainee' => ['index', 'update', 'delete', 'show', 'add'],
-			  'course' => ['index', 'update', 'delete', 'show', 'add', 'list_unassign', 'add_trainee', 'list_assign', 'remove_trainee']
-			);
-			break;
-		case 'Trainer':
-			$controllers = array(
-			  'pages' => ['home', 'error'],
-			  'trainer' => ['detail'],
-			  'topic' => ['inprogress']
-			);
-			break;
-		case 'Trainee':
-			$controllers = array(
-			  'pages' => ['home', 'error'],
-			  'trainee' => ['detail'],
-			  'course' => ['inprogress']
-			);
-			break;
-	}
+	// switch ($_SESSION['role'])
+	// {
+	// 	case 'Administrator':
+	// 		$controllers = array(
+	// 		  'pages' => ['home', 'error'],
+	// 		  'trainer' => ['index', 'update', 'delete', 'show', 'add'],
+	// 		  'staff' => ['index', 'update', 'delete', 'show', 'add']
+	// 		);
+	// 		break;
+	// 	case 'Staff':
+	// 		$controllers = array(
+	// 		  'pages' => ['home', 'error'],
+	// 		  'category' => ['index', 'update', 'delete', 'show', 'add'],
+	// 		  'trainer' => ['index', 'update', 'delete', 'show', 'add'],
+	// 		  'topic' => ['index', 'update', 'delete', 'show', 'add'],
+	// 		  'trainee' => ['index', 'update', 'delete', 'show', 'add'],
+	// 		  'course' => ['index', 'update', 'delete', 'show', 'add', 'list_unassign', 'add_trainee', 'list_assign', 'remove_trainee']
+	// 		);
+	// 		break;
+	// 	case 'Trainer':
+	// 		$controllers = array(
+	// 		  'pages' => ['home', 'error'],
+	// 		  'trainer' => ['detail'],
+	// 		  'topic' => ['inprogress']
+	// 		);
+	// 		break;
+	// 	case 'Trainee':
+	// 		$controllers = array(
+	// 		  'pages' => ['home', 'error'],
+	// 		  'trainee' => ['detail'],
+	// 		  'course' => ['inprogress']
+	// 		);
+	// 		break;
+	// }
 
 	// Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
-
+		$controllers = array(
+			'pages' => ['home','error'],
+			'source' => ['index', 'add']
+		);
 	// $controllers = array(
 	//   'pages' => ['home', 'error'],
 	//   'category' => ['index', 'update', 'delete', 'show', 'add'],
