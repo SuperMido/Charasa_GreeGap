@@ -1,4 +1,8 @@
 <?php
+    function getCurrentDate()
+    {
+        return date("Y-m-d H:i:s");
+    }
 	session_start();
 	require_once('connection.php');
 	if(!isset($_SESSION['role']))
