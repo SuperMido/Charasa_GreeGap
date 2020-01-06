@@ -2,6 +2,18 @@
   <div class="sidebar">
     <nav class="sidebar-nav">
       <ul class="nav">
+
+          <?php if($_SESSION['role']=='Anonymous') {?>
+              <li class="nav-item">
+                  <a class="nav-link" href="./login.php">
+                      <i class="nav-icon icon-user"></i> Login</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="./register.php">
+                      <i class="nav-icon icon-user"></i> Register</a>
+              </li>
+          <?php } ?>
+
         <?php //if($_SESSION['role']=='Administrator') {?>
         <!--<li class="nav-item">
           <a class="nav-link" href="./?controller=trainer">
