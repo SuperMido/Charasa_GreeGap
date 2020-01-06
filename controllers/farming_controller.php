@@ -6,13 +6,13 @@ class FarmingController extends BaseController
 {
   function __construct()
   {
-    $this->folder = 'source';
+    $this->folder = 'farming';
   }
 
   function index()
   {
-    $sources = Source::findbyUser(1);
-    $data = array('sources' => $sources);
+    $farms = Farming::findbyFarm(1);
+    $data = array('farms' => $farms);
     $this->render('index', $data);
   }
   function add()

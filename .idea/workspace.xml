@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="573cfab0-10c3-454e-b661-d7f06a4956c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/controllers/farming_controller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/farming_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/farming_controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/farming.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/farming.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +58,7 @@
       <updated>1578123540413</updated>
       <workItem from="1578123553215" duration="69000" />
       <workItem from="1578273426954" duration="229000" />
-      <workItem from="1578274148973" duration="10316000" />
+      <workItem from="1578274148973" duration="11717000" />
     </task>
     <servers />
   </component>
