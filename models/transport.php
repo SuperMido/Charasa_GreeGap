@@ -2,6 +2,7 @@
 class Transport
 {
     public $id;
+    public $transportid;
     public $name;
     public $des;
     public $quantity;
@@ -9,9 +10,10 @@ class Transport
     public $pre_hash;
     public $hash;
 
-    function __construct($id, $name, $des, $quantity, $create_at, $pre_hash, $hash)
+    function __construct($id, $transportid, $name, $des, $quantity, $create_at, $pre_hash, $hash)
     {
         $this->id = $id;
+        $this->transportid = $transportid;
         $this->name = $name;
         $this->des = $des;
         $this->quantity = $quantity;
@@ -48,5 +50,37 @@ class Transport
     {
         //Add source to database
     }
+
+    static function findbyTransporter($transportid)
+    {
+        $list = [];
+        // Find added source by user id
+        $db = DB::getInstance();
+        $req = $db->prepare("SELECT * FROM transport WHERE transportid = :transportid;");
+        $req->bindValue(':transportid',$transportid);
+        $req->execute();
+        foreach ($req->fetchAll() as $item) {
+            $list[] = new Transport($item['id'], $item['transportid'], $item['name'], $item['des'], $item['quantity'],NULL,NULL,  $item['hash']);
+        }
+        return $list;
+    }
+
+    static function add($transportid, $name, $des,$pre_hash, $quantity)
+    {
+        $date = getCurrentDate();
+        $hash = hash('sha256', $transportid . $name . $des .$quantity. $date.$pre_hash);
+        //Add source to database
+        $db = DB::getInstance();
+        $req = $db->prepare("INSERT INTO transport(transportid, name, des, quantity, create_at, pre_hash, hash)  VALUES (:transportid, :name, :des, :quantity, :create_at,:pre_hash, :hash);");
+        $req->bindValue(':transportid', $transportid);
+        $req->bindValue(':name', $name);
+        $req->bindValue(':des', $des);
+        $req->bindValue(':quantity', $quantity);
+        $req->bindValue(':create_at', $date);
+        $req->bindValue(':pre_hash', $pre_hash);
+        $req->bindValue(':hash', $hash);
+        $req->execute();
+    }
+
 }
 ?>
