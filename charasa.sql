@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2020 at 11:36 AM
+-- Generation Time: Jan 07, 2020 at 09:08 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.1.32
 
@@ -42,6 +42,17 @@ CREATE TABLE `farming` (
   `update_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `farming`
+--
+
+INSERT INTO `farming` (`id`, `farmid`, `name`, `des`, `avg_tem`, `avg_hum`, `avg_humS`, `create_at`, `pre_hash`, `hash`, `update_at`) VALUES
+(1, 1, 'cây gì đó', 'cái gì đó', 0, 0, 0, '2020-01-06 22:02:50', '3141592654', '402c39feb0b4e4777e6e60f4e2dc4d04df7d4dc4f59f7ab5debbf1cf61a99351', '2020-01-07 04:02:50'),
+(2, 1, '', '', 0, 0, 0, '2020-01-06 22:42:10', 'hash', '', '2020-01-07 04:42:10'),
+(3, 1, '', '', 0, 0, 0, '2020-01-06 22:42:41', 'hash', '', '2020-01-07 04:42:41'),
+(4, 1, '', '', 0, 0, 0, '2020-01-06 22:43:04', 'hash', '', '2020-01-07 04:43:04'),
+(5, 1, '', '', 0, 0, 0, '2020-01-06 22:48:28', 'hash', '', '2020-01-07 04:48:28');
+
 -- --------------------------------------------------------
 
 --
@@ -67,7 +78,8 @@ CREATE TABLE `rating` (
   `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `productid` int(11) NOT NULL,
-  `feedback` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `feedback` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `count` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -96,6 +108,13 @@ CREATE TABLE `sensor` (
   `mac` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `sensor`
+--
+
+INSERT INTO `sensor` (`id`, `farmid`, `des`, `mac`) VALUES
+(1, 1, 'sensor 01', '');
+
 -- --------------------------------------------------------
 
 --
@@ -111,17 +130,16 @@ CREATE TABLE `sensorlogs` (
   `avg_humS` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `sold`
+-- Dumping data for table `sensorlogs`
 --
 
-CREATE TABLE `sold` (
-  `id` int(11) NOT NULL,
-  `productid` int(11) NOT NULL,
-  `count` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+INSERT INTO `sensorlogs` (`id`, `sensorid`, `productid`, `avg_tem`, `avg_hum`, `avg_humS`) VALUES
+(1, 1, 1, 0, 0, 0),
+(2, 1, 2, 0, 0, 0),
+(3, 1, 2, 0, 0, 0),
+(4, 1, 2, 0, 0, 0),
+(5, 1, 2, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -148,22 +166,6 @@ INSERT INTO `source` (`id`, `providerid`, `name`, `des`, `create_at`, `hash`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `store`
---
-
-CREATE TABLE `store` (
-  `id` int(11) NOT NULL,
-  `storeid` int(11) NOT NULL,
-  `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `des` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `pre_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `transport`
 --
 
@@ -177,6 +179,13 @@ CREATE TABLE `transport` (
   `pre_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `transport`
+--
+
+INSERT INTO `transport` (`id`, `transportid`, `name`, `des`, `quantity`, `create_at`, `pre_hash`, `hash`) VALUES
+(1, 1, 'Rau 2k', 'Rau nhà anh Huy', 5, '2020-01-07 01:45:18', '3141592654', 'ef10c159f12260c73f286b46d7c4cd85efef6d23c82594e307b036529bdf3f73');
 
 -- --------------------------------------------------------
 
@@ -250,25 +259,11 @@ ALTER TABLE `sensorlogs`
   ADD KEY `productid` (`productid`);
 
 --
--- Indexes for table `sold`
---
-ALTER TABLE `sold`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `productid` (`productid`);
-
---
 -- Indexes for table `source`
 --
 ALTER TABLE `source`
   ADD PRIMARY KEY (`id`),
   ADD KEY `providerid` (`providerid`);
-
---
--- Indexes for table `store`
---
-ALTER TABLE `store`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `storeid` (`storeid`);
 
 --
 -- Indexes for table `transport`
@@ -291,7 +286,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `farming`
 --
 ALTER TABLE `farming`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `rating`
@@ -309,19 +304,13 @@ ALTER TABLE `scanned`
 -- AUTO_INCREMENT for table `sensor`
 --
 ALTER TABLE `sensor`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sensorlogs`
 --
 ALTER TABLE `sensorlogs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `sold`
---
-ALTER TABLE `sold`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `source`
@@ -330,16 +319,10 @@ ALTER TABLE `source`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `store`
---
-ALTER TABLE `store`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `transport`
 --
 ALTER TABLE `transport`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -379,22 +362,10 @@ ALTER TABLE `sensorlogs`
   ADD CONSTRAINT `SensorLogs_ibfk_2` FOREIGN KEY (`sensorid`) REFERENCES `sensor` (`id`);
 
 --
--- Constraints for table `sold`
---
-ALTER TABLE `sold`
-  ADD CONSTRAINT `Sold_ibfk_1` FOREIGN KEY (`productid`) REFERENCES `product` (`id`);
-
---
 -- Constraints for table `source`
 --
 ALTER TABLE `source`
   ADD CONSTRAINT `Source_ibfk_1` FOREIGN KEY (`providerid`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `store`
---
-ALTER TABLE `store`
-  ADD CONSTRAINT `store_ibfk_1` FOREIGN KEY (`storeid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transport`
