@@ -78,31 +78,28 @@ class Farming
         $avg_hum = $logged->avg_hum;
         $avg_humS = $logged->avg_humS;
 
-        $db2 = DB::getInstance();
-        $req2=$db2->prepare("UPDATE farming SET avg_temp=:avg_temp,avg_hum=:avg_hum,avg_humS=:avg_humS,update_at=:date WHERE id=:id;");
-        $req2->bindValue('avg_temp',$avg_temp);
-        $req2->bindValue('avg_hum',$avg_hum);
-        $req2->bindValue('avg_humS',$avg_humS);
-        $req2->bindValue('update_at',$date);
-        $req2->bindValue('id',$id);
-        $req2->execute();
+        $req=$db->prepare("UPDATE farming SET avg_temp=:avg_temp,avg_hum=:avg_hum,avg_humS=:avg_humS,update_at=:date WHERE id=:id;");
+        $req->bindValue('avg_temp',$avg_temp);
+        $req->bindValue('avg_hum',$avg_hum);
+        $req->bindValue('avg_humS',$avg_humS);
+        $req->bindValue('update_at',$date);
+        $req->bindValue('id',$id);
+        $req->execute();
 
         $prod = [];
-        $db3 = DB::getInstance();
-        $req3=$db3->prepare("SELECT * FROM farming WHERE id=:id;");
-        $req3->bindValue('id',$id);
-        $req3->execute();
-        foreach ($req3->fetchAll() as $item){
+        $req=$db->prepare("SELECT * FROM farming WHERE id=:id;");
+        $req->bindValue('id',$id);
+        $req->execute();
+        foreach ($req->fetchAll() as $item){
             $prod[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], $item['avg_temp'],$item['avg_hum'],$item['avg_humS'],  $item['create_at'],$item['pre_hash'], $item['hash'],$item['update_at']);
         }
         $final = $prod[0];
         $hash = hash('sha256', $final->id . $final->farmid . $final->name . $final->des. $final->avg_temp. $final->avg_hum. $final->avg_humS. $final->create_at. $final->pre_hash. $final->update_at);
 
-        $db4 = DB::getInstance();
-        $req4=$db4->prepare("UPDATE farming SET hash=:hash WHERE id=:id;");
-        $req2->bindValue('hash',$hash);
-        $req2->bindValue('id',$id);
-        $req2->execute();
+        $req=$db->prepare("UPDATE farming SET hash=:hash WHERE id=:id;");
+        $req->bindValue('hash',$hash);
+        $req->bindValue('id',$id);
+        $req->execute();
 
         // Update object
         //$this->avg_temp = $avg_temp;
@@ -123,7 +120,7 @@ class Farming
         $req->bindValue(':farmid',$farmid);
         $req->execute();
         foreach ($req->fetchAll() as $item) {
-            $list[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], $item['avg_temp'],$item['avg_hum'],$item['avg_humS'],  $item['create_at'],$item['pre_hash'], $item['hash'],$item['update_at']);
+            $list[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], NULL,NULL,NULL,  $item['create_at'],NULL, NULL,NULL);
         }
         return $list;
     }

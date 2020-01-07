@@ -40,7 +40,7 @@
 	 $controllers = array(
 	   'pages' => ['home', 'error'],
 	   'source' => ['index', 'add'],
-	    'farming'=>['index']);
+         'farming'=>['index', 'add']);
 
 	// Nếu các tham số nhận được từ URL không hợp lệ (không thuộc list controller và action có thể gọi
 	// thì trang báo lỗi sẽ được gọi ra.

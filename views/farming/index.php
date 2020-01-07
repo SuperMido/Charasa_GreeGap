@@ -63,7 +63,7 @@
                               </button>
                           </div>
                           <div class="modal-body">
-                              <form>
+                              <form id="frmChange" class="form-horizontal" action="./?controller=farming&action=add" method="post" enctype="multipart/form-data">
                                   <div class="form-group">
                                       <a><button class="btn btn-lg btn-pill btn-success" type="button">
                                               <label class="qrcode-text-btn">
@@ -106,7 +106,7 @@
                                   </div>
                                   <div class="form-group">
                                       <label for="name" class="col-form-label">Name:</label>
-                                      <input type="text" class="form-control" id="name" name="name">
+                                      <input type="text" class="form-control" id="name" name="name" required>
                                   </div>
                                   <div class="form-group">
                                       <label for="des" class="col-form-label">Description:</label>
@@ -164,9 +164,9 @@
               <div><?=$product->create_at;?><div>
             </td>
             <td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <a href="./index.php?controller=farming&action=harvest&id=<?=$product->id;?>"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     Harvest
-                </button>
+                </button></a>
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
