@@ -197,7 +197,7 @@
 
                                           mywindow.document.close();
                                           mywindow.focus();
-                                          setTimeout(function(){mywindow.print();mywindow.close();}, 400);
+                                          setTimeout(function(){mywindow.print();mywindow.close();}, 500);
                                           return true;
                                       }
                                   </script>
