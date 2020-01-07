@@ -16,8 +16,6 @@ class Sensor
 
     static function add($farmid, $des, $mac)
     {
-        //$date = getCurrentDate();
-        //$hash = hash('sha256', $farmid . $name . $des . $pre_hash);
         //Add source to database
         $db = DB::getInstance();
         $req = $db->prepare("INSERT INTO sensor(farmid, des,mac)  VALUES (:farmid,:des,:mac);");
