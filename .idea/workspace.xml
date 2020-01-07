@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="573cfab0-10c3-454e-b661-d7f06a4956c0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models/sensor.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/farming/index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/farming/show.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/farming_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/farming_controller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/farming.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/farming.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/sensor.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/sensor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +28,7 @@
   <component name="ProjectId" id="1VvB9QZHe6pTSopYEHdFc6wx563" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -31,6 +36,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Charasa_GreeGap\views" />
       <recent name="C:\xampp\htdocs\Charasa_GreeGap\models" />
       <recent name="C:\xampp\htdocs\Charasa_GreeGap\controllers" />
     </key>
@@ -60,7 +66,8 @@
       <workItem from="1578123553215" duration="69000" />
       <workItem from="1578273426954" duration="229000" />
       <workItem from="1578274148973" duration="11771000" />
-      <workItem from="1578317217967" duration="5548000" />
+      <workItem from="1578317217967" duration="6274000" />
+      <workItem from="1578358642603" duration="9398000" />
     </task>
     <servers />
   </component>

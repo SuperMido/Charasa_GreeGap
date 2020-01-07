@@ -1,5 +1,5 @@
 <?php
-
+require_once('models/sensor.php');
 class Log{
     public $id;
     public $sensorid;
@@ -58,7 +58,7 @@ class Farming
         $hash = hash('sha256', $this->id .$this->farmid . $this->name . $this->des . $this->avg_temp . $this->avg_hum . $this->avg_humS . $this->create_at . $this->update_at . $this->pre_hash);
     }
 
-    function harvest($id)
+    static function harvest($id)
     {
         $templist = [];
         $date = getCurrentDate();
@@ -132,10 +132,13 @@ class Farming
         $sensorList = [];
         // Find added source by user id
         $db = DB::getInstance();
-        $req = $db->prepare("SELECT * FROM sersors WHERE farmid = :farmid;");
+        $req = $db->prepare("SELECT * FROM sensor WHERE farmid = :farmid;");
         $req->bindValue(':farmid',$farmid);
         $req->execute();
         foreach ($req->fetchAll() as $item) {
+//            ob_start();
+//            var_dump($item);
+//            $sensorList[] = ob_get_clean();
             $sensorList[] = new Sensor($item['id'], $item['farmid'], $item['des'], $item['mac']);
         }
         return $sensorList;

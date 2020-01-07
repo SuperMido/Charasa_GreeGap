@@ -25,6 +25,8 @@
     <!-- Main styles for this application-->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/pace.min.css" rel="stylesheet">
+
+
   </head>
   <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
     <header class="app-header navbar">

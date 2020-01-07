@@ -11,11 +11,13 @@ class Sensor
         $this->id = $id;
         $this->farmid = $farmid;
         $this->des = $des;
-        $this->hash = $mac;
+        $this->mac = $mac;
     }
 
     static function add($farmid, $des, $mac)
     {
+        //$date = getCurrentDate();
+        //$hash = hash('sha256', $farmid . $name . $des . $pre_hash);
         //Add source to database
         $db = DB::getInstance();
         $req = $db->prepare("INSERT INTO sensor(farmid, des,mac)  VALUES (:farmid,:des,:mac);");
