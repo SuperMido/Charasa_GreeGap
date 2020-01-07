@@ -102,7 +102,7 @@
                                           }
                                       </style>
 
-                                      <input type="hidden" class="form-control" id="hash" name="pre_hash" value="hash" readonly>
+                                      <input type="hidden" class="form-control" id="hash" name="pre_hash" readonly>
                                   </div>
                                   <div class="form-group">
                                       <label for="name" class="col-form-label">Name:</label>
@@ -167,44 +167,6 @@
                 <a href="./index.php?controller=farming&action=harvest&id=<?=$product->id;?>"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     Harvest
                 </button></a>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">QR Code</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-
-                            <div class="modal-body" id="qrcode">
-                                <!--<img src="https://qrickit.com/api/qr.php?qrsize=250&d=<?//=$source->hash;?>">-->
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <!--<button type="button" class="btn btn-primary" onclick="myFunction('qrcode')">Print</button>
-                                <script>
-                                    function myFunction(divId) {
-                                        var content = document.getElementById(divId).outerHTML;
-                                        var mywindow = window.open('', 'Print', 'height=600,width=800');
-
-                                        mywindow.document.write('<html><head><title>Print</title>');
-                                        mywindow.document.write('</head><body>');
-                                        mywindow.document.write(content);
-                                        mywindow.document.write('</body></html>');
-
-                                        mywindow.document.close();
-                                        mywindow.focus();
-                                        setTimeout(function(){mywindow.print();mywindow.close();}, 400);
-                                        return true;
-                                    }
-                                </script>-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </td>
           </tr>
           <?php } ?>
@@ -212,5 +174,96 @@
         </table>
       </div>
     </div>
+      <div class="card">
+          <div class="card-header"> <strong>List</strong> of items harvested from your Farm </div>
+          <div class="card-body">
+              <table class="table table-responsive-sm table-bordered">
+                  <thead class="thead-light">
+                  <tr>
+
+                      <th class="text-center align-middle" style="width:15%">Name</th>
+                      <th class="text-center align-middle" style="width:20%">Description</th>
+                      <th class="text-center align-middle" style="width:10%">Date Created</th>
+                      <th class="text-center align-middle" style="width:10%">Date Updated</th>
+                      <th class="text-center align-middle" style="width:10%">Avg temp</th>
+                      <th class="text-center align-middle" style="width:10%">Avg hum</th>
+                      <th class="text-center align-middle" style="width:10%">Avg soil hum</th>
+                      <th class="text-center align-middle" style="width:154%">Action</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <?php foreach ($harvesteds as $harvested) { ?>
+                      <tr>
+
+                          <td class="align-middle">
+                              <div><?=$harvested->name;?><div>
+                          </td>
+                          <td class="align-middle">
+                              <div><?=$harvested->des;?><div>
+                          </td>
+                          <td class="text-center align-middle">
+                              <div><?=$harvested->create_at;?><div>
+                          </td>
+                          <td class="text-center align-middle">
+                              <div><?=$harvested->update_at;?><div>
+                          </td>
+                          <td class="text-center align-middle">
+                              <div><?=$harvested->avg_temp;?><div>
+                          </td>
+                          <td class="text-center align-middle">
+                              <div><?=$harvested->avg_hum;?><div>
+                          </td>
+                          <td class="text-center align-middle">
+                              <div><?=$harvested->avg_humS;?><div>
+                          </td>
+                          <td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                  Generate QR
+                              </button>
+
+                              <!-- Modal -->
+                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel">QR Code</h5>
+                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                              </button>
+                                          </div>
+
+                                          <div class="modal-body" id="qrcode">
+                                              <img src="https://qrickit.com/api/qr.php?qrsize=250&d=<?=$harvested->hash;?>">
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-primary" onclick="myFunction('qrcode')">Print</button>
+                                              <script>
+                                                  function myFunction(divId) {
+                                                      var content = document.getElementById(divId).outerHTML;
+                                                      var mywindow = window.open('', 'Print', 'height=600,width=800');
+
+                                                      mywindow.document.write('<html><head><title>Print</title>');
+                                                      mywindow.document.write('</head><body>');
+                                                      mywindow.document.write(content);
+                                                      mywindow.document.write('</body></html>');
+
+                                                      mywindow.document.close();
+                                                      mywindow.focus();
+                                                      setTimeout(function(){mywindow.print();mywindow.close();}, 400);
+                                                      return true;
+                                                  }
+                                              </script>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </td>
+                      </tr>
+                  <?php } ?>
+                  </tbody>
+              </table>
+          </div>
+      </div>
   </div>
 </div>

@@ -116,11 +116,25 @@ class Farming
         $list = [];
         // Find added source by user id
         $db = DB::getInstance();
-        $req = $db->prepare("SELECT * FROM farming WHERE farmid = :farmid;");
+        $req = $db->prepare("SELECT * FROM farming WHERE farmid = :farmid AND hash = \"\";");
         $req->bindValue(':farmid',$farmid);
         $req->execute();
         foreach ($req->fetchAll() as $item) {
             $list[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], NULL,NULL,NULL,  $item['create_at'],NULL, NULL,NULL);
+        }
+        return $list;
+    }
+
+    static function findHarvested($farmid)
+    {
+        $list = [];
+        // Find added source by user id
+        $db = DB::getInstance();
+        $req = $db->prepare("SELECT * FROM farming WHERE farmid = :farmid AND hash != \"\";");
+        $req->bindValue(':farmid',$farmid);
+        $req->execute();
+        foreach ($req->fetchAll() as $item) {
+            $list[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], $item['avg_tem'],$item['avg_hum'],$item['avg_humS'],  $item['create_at'],NULL, $item['hash'],$item['update_at']);
         }
         return $list;
     }

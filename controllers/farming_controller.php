@@ -13,13 +13,14 @@ class FarmingController extends BaseController
   {
     $products = Farming::findbyFarm(1);
     $sensors = Farming::getSensor(1);
-    $data = array('products' => $products, 'sensors' => $sensors);
+    $harvesteds = Farming::findHarvested(1);
+    $data = array('products' => $products, 'sensors' => $sensors,'harvesteds'=>$harvesteds);
     $this->render('index', $data);
   }
 
   function harvest()
   {
-        Farming::harvest($_POST['id']);
+        Farming::harvest($_GET['id']);
         header("Location: index.php?controller=farming");
   }
 
