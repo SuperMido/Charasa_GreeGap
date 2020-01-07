@@ -60,7 +60,7 @@ class Transport
         $req->bindValue(':transportid',$transportid);
         $req->execute();
         foreach ($req->fetchAll() as $item) {
-            $list[] = new Transport($item['id'], $item['transportid'], $item['name'], $item['des'], $item['quantity'],NULL,NULL,  $item['hash']);
+            $list[] = new Transport($item['id'], $item['transportid'], $item['name'], $item['des'], $item['quantity'],$item['create_at'],NULL,  $item['hash']);
         }
         return $list;
     }
