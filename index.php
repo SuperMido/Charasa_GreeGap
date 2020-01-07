@@ -1,8 +1,12 @@
 <?php
+	//Date time
+	date_default_timezone_set("Asia/Bangkok");
     function getCurrentDate()
     {
         return date("Y-m-d H:i:s");
-    }
+	}
+	
+	//Main index
 	session_start();
 	require_once('connection.php');
 	if(!isset($_SESSION['role']))
