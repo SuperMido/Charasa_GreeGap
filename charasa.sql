@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 08, 2020 at 06:40 PM
+-- Generation Time: Jan 08, 2020 at 07:43 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -104,14 +104,15 @@ CREATE TABLE IF NOT EXISTS `rating` (
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`),
   KEY `productid` (`productid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `rating`
 --
 
 INSERT INTO `rating` (`id`, `userid`, `productid`, `rating`, `count`, `feedback`, `create_at`) VALUES
-(1, 5, 1, 4, 10, 'Alo alo', '2020-01-08 18:39:54');
+(1, 5, 1, 4, 10, 'Alo alo', '2020-01-08 18:39:54'),
+(2, 5, 1, 5, 2342, '234\r\n', '2020-01-08 19:42:44');
 
 -- --------------------------------------------------------
 
@@ -128,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `scanned` (
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`),
   KEY `productid` (`productid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `scanned`
@@ -136,7 +137,19 @@ CREATE TABLE IF NOT EXISTS `scanned` (
 
 INSERT INTO `scanned` (`id`, `userid`, `productid`, `create_at`) VALUES
 (1, 5, 2, '2020-01-08 17:56:04'),
-(2, 5, 4, '2020-01-08 17:56:25');
+(2, 5, 4, '2020-01-08 17:56:25'),
+(3, 5, 1, '2020-01-08 19:12:15'),
+(4, 5, 1, '2020-01-08 19:15:14'),
+(5, 5, 1, '2020-01-08 19:16:55'),
+(6, 5, 1, '2020-01-08 19:32:50'),
+(7, 5, 1, '2020-01-08 19:35:36'),
+(8, 5, 1, '2020-01-08 19:37:18'),
+(9, 5, 1, '2020-01-08 19:38:16'),
+(10, 5, 1, '2020-01-08 19:39:24'),
+(11, 5, 1, '2020-01-08 19:39:54'),
+(12, 5, 1, '2020-01-08 19:41:33'),
+(13, 5, 1, '2020-01-08 19:42:02'),
+(14, 5, 1, '2020-01-08 19:42:51');
 
 -- --------------------------------------------------------
 

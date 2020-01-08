@@ -7,7 +7,7 @@
 			  'pages' => ['home', 'error','product'],
 			  'source' => ['index', 'add'],
 			  'scanned' => ['index'],
-			  'rating' => ['index', 'add']
+			  'rating' => ['index', 'add','thankyou']
 			);
 			break;
 		case 'farm':
@@ -16,7 +16,7 @@
 			  'farming'=>['index', 'add','harvest'],
 			  'sensor' => ['index', 'add'],
 			  'scanned' => ['index'],
-			  'rating' => ['index', 'add']
+			  'rating' => ['index', 'add','thankyou']
 			);
 			break;
 		case 'transporter':
@@ -24,7 +24,7 @@
 			  'pages' => ['home', 'error','product'],
 			  'transport' => ['index', 'add'],
 			  'scanned' => ['index'],
-			  'rating' => ['index', 'add']
+			  'rating' => ['index', 'add','thankyou']
 			);
 			break;
 		case 'store':
@@ -32,14 +32,14 @@
 			  'pages' => ['home', 'error','product'],
 			  'product' => ['index', 'add'],
 			  'scanned' => ['index'],
-			  'rating' => ['index', 'add']
+			  'rating' => ['index', 'add','thankyou']
 			);
 			break;
 		case 'user':
 			$controllers = array(
 			  'pages' => ['home', 'error','product'],
 			  'scanned' => ['index'],
-			  'rating' => ['index', 'add']
+			  'rating' => ['index', 'add','thankyou']
 			  );
 			break;
 		default:

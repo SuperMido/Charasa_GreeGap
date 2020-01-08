@@ -26,7 +26,7 @@
         <script type="text/javascript" language="javascript">
                 function submitForm()
                 {
-                    document.getElementById('form').submit();
+                    document.getElementById('frmChange').submit();
                 }
         </script>
       </div>
