@@ -2,6 +2,10 @@
   <div class="sidebar">
     <nav class="sidebar-nav">
       <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="./">
+            <i class="nav-icon icon-user"></i> Scan Now!</a>
+        </li>
         <?php if($_SESSION['user']['role']=='provider') {?>
             <li class="nav-item">
                 <a class="nav-link" href="./?controller=source">
@@ -26,11 +30,6 @@
                 <a class="nav-link" href="./?controller=product">
                     <i class="nav-icon icon-user"></i> Manage Product</a>
             </li>
-        <?php } else { ?>
-          <li class="nav-item">
-            <a class="nav-link" href="./">
-              <i class="nav-icon icon-user"></i> Scan Now!</a>
-          </li>
         <?php } ?>
         <?php if($_SESSION['user']['role']=='Anonymous') {?>
             <li class="nav-item">
