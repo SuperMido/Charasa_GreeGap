@@ -49,11 +49,6 @@
                         </label> Scan now!
                     </button>
                     <style>
-                        body,
-                        input {
-                            font-size: 14pt
-                        }
-
                         input,
                         label {
                             vertical-align: middle

@@ -71,10 +71,6 @@
                                           </button></a>
 
                                       <style>
-                                          body,
-                                          input {
-                                              font-size: 14pt
-                                          }
 
                                           input,
                                           label {
