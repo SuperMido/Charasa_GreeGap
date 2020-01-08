@@ -94,7 +94,7 @@ class Product
         foreach ($req->fetchAll() as $item) {
             $list["seed_name"]=$item['name'];
             $list["seed_des"]=$item['des'];
-            $list["seed_create_at"]=$item['create_at'];
+            //$list["seed_create_at"]=$item['create_at'];
             $userid = $item['providerid'];
             //$list[3] = new Source($item['id'], $item['providerid'], $item['name'], $item['des'],$item['create_at'], NULL);
         }

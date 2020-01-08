@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="573cfab0-10c3-454e-b661-d7f06a4956c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/base_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/base_controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/pages_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pages_controller.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/product.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/pages/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pages/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/product.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
