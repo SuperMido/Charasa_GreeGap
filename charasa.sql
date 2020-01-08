@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 08, 2020 at 10:34 AM
+-- Generation Time: Jan 08, 2020 at 06:34 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `storeid` (`storeid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
@@ -81,7 +81,10 @@ CREATE TABLE IF NOT EXISTS `product` (
 
 INSERT INTO `product` (`id`, `storeid`, `name`, `des`, `create_at`, `pre_hash`, `hash`) VALUES
 (1, 4, 'Giá sạch 001', 'nhận đủ 5kg từ npp', '2020-01-08 04:15:56', 'npp01-giasach001', 'cuahang01-giasach001'),
-(2, 4, '123123', '123123', '2020-01-08 10:00:09', '551c36c2931871d93714b6ab9dafd2ac6a3084d8a56d95e23171ad4a1b8755b8', 'd45d08aa25d788ddeda31c252b29d007086013a7adaae0b7b0cbc31af64cb52f');
+(2, 4, '123123', '123123', '2020-01-08 10:00:09', '551c36c2931871d93714b6ab9dafd2ac6a3084d8a56d95e23171ad4a1b8755b8', 'd45d08aa25d788ddeda31c252b29d007086013a7adaae0b7b0cbc31af64cb52f'),
+(3, 4, '1', '1', '2020-01-08 17:54:52', '551c36c2931871d93714b6ab9dafd2ac6a3084d8a56d95e23171ad4a1b8755b8', 'b3039ba270da595046208cced4cf04a45ed2261675da314fa4dd2945ffc41035'),
+(4, 4, '2', '2', '2020-01-08 17:55:01', '551c36c2931871d93714b6ab9dafd2ac6a3084d8a56d95e23171ad4a1b8755b8', 'a2717dbb6e74bf9db056f269f06c91b9fe5f4ad1cd77a44f7a5b85696fd589d3'),
+(5, 4, '3', '3', '2020-01-08 17:55:07', '', 'f679da2775fc66f8ea10743f971e7ed8c11e236d3e889c0062e12f3f124416d3');
 
 -- --------------------------------------------------------
 
@@ -94,12 +97,20 @@ CREATE TABLE IF NOT EXISTS `rating` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
   `productid` int(11) NOT NULL,
+  `rating` int(11) NOT NULL,
   `count` int(11) NOT NULL,
   `feedback` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`),
   KEY `productid` (`productid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`id`, `userid`, `productid`, `rating`, `count`, `feedback`) VALUES
+(1, 5, 1, 4, 10, 'Alo alo');
 
 -- --------------------------------------------------------
 
@@ -116,7 +127,15 @@ CREATE TABLE IF NOT EXISTS `scanned` (
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`),
   KEY `productid` (`productid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `scanned`
+--
+
+INSERT INTO `scanned` (`id`, `userid`, `productid`, `create_at`) VALUES
+(1, 5, 2, '2020-01-08 17:56:04'),
+(2, 5, 4, '2020-01-08 17:56:25');
 
 -- --------------------------------------------------------
 
@@ -188,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `source` (
   `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `providerld` (`providerid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `source`
@@ -196,7 +215,13 @@ CREATE TABLE IF NOT EXISTS `source` (
 
 INSERT INTO `source` (`id`, `providerid`, `name`, `des`, `create_at`, `hash`) VALUES
 (1, 1, 'đậu xanh giống sạch 001', 'Đã được kiểm chứng qua công nghệ Gì đó', '2020-01-08 04:08:28', 'hatgiong001'),
-(2, 1, 'Äáº­u xanh giá»‘ng sáº¡ch 002', 'ÄÃ£ Ä‘Æ°á»£c kiá»ƒm chá»©ng bá»Ÿi Dr. Huy', '2020-01-08 09:21:10', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197');
+(2, 1, 'Äáº­u xanh giá»‘ng sáº¡ch 002', 'ÄÃ£ Ä‘Æ°á»£c kiá»ƒm chá»©ng bá»Ÿi Dr. Huy', '2020-01-08 09:21:10', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197'),
+(3, 1, '', '', '2020-01-08 17:27:30', '6301d29e21acad310c89c0722935a57fc105e38b855404fa49a1f062c174c856'),
+(4, 1, '123', '123', '2020-01-08 17:28:44', 'f2e8a74dcc78840185dc6eb224c28ea127ba0f4f0f9810245f9c3f3e4188ab0b'),
+(5, 1, '', '', '2020-01-08 17:28:47', '082ae3419316b30c1bd945c99d9f080345130bc7a28fbfe7299b55bf2fa10c8b'),
+(6, 1, '', '', '2020-01-08 17:31:14', 'c2026afddd3c1bb8ecabfe8dcca4eb7cbbe7304728b8ccd94b8d887d71465d49'),
+(7, 1, '', '', '2020-01-08 17:36:36', '06f445c57f46ba9efaba088b7c9b35b00f76b9c6c4fcbaec915ff25a2b265644'),
+(8, 1, '', '', '2020-01-08 17:37:34', 'e0daff78c465ede28e670f5c7a9bf0d15708fa611993ee5f9237f14f1d783e82');
 
 -- --------------------------------------------------------
 
