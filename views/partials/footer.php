@@ -1,11 +1,11 @@
     <footer class="app-footer">
       <div>
-        <a href="#">Training Management System</a>
-        <span>&copy; 2019 creativeLabs.</span>
+        <a href="#">GreeGAP - Clean Food Chain Management System</a>
+        <br><span>&copy; 2020 Charasa Team</span>
       </div>
       <div class="ml-auto">
-        <span>Powered by</span>
-        <a href="#">FPT Co.</a>
+        <span>Powered by</span><br>
+        <a href="#">Charasa Team from University of Greenwich (Vietnam) - Da Nang Campus</a>
       </div>
     </footer>
     <!-- CoreUI and necessary plugins-->

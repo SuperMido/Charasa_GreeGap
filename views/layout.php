@@ -4,46 +4,46 @@
       <ul class="nav">
         <li class="nav-item">
           <a class="nav-link" href="./">
-            <i class="nav-icon icon-user"></i> Scan Now!</a>
+            <i class="nav-icon cil-check"></i> Scan Now!</a>
         </li>
         <?php if($_SESSION['user']['role']=='provider') {?>
             <li class="nav-item">
                 <a class="nav-link" href="./?controller=source">
-                    <i class="nav-icon icon-user"></i> Manage Source</a>
+                    <i class="nav-icon cil-clipboard"></i> Manage Source</a>
             </li>
         <?php } else if($_SESSION['user']['role']=='farm') { ?>
             <li class="nav-item">
                 <a class="nav-link" href="./?controller=farming">
-                    <i class="nav-icon icon-user"></i> Manage Farm</a>
+                    <i class="nav-icon cil-plant"></i> Manage Farm</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./?controller=sensor">
-                    <i class="nav-icon icon-user"></i> Manage Sensor</a>
+                    <i class="nav-icon cil-audio"></i> Manage Sensor</a>
             </li>
         <?php } else if($_SESSION['user']['role']=='transporter') { ?>
             <li class="nav-item">
                 <a class="nav-link" href="./?controller=transport">
-                    <i class="nav-icon icon-user"></i> Manage Transport</a>
+                    <i class="nav-icon cil-locomotive"></i> Manage Transport</a>
             </li>
         <?php } else if($_SESSION['user']['role']=='store') { ?>
             <li class="nav-item">
                 <a class="nav-link" href="./?controller=product">
-                    <i class="nav-icon icon-user"></i> Manage Product</a>
+                    <i class="nav-icon cil-clipboard"></i> Manage Product</a>
             </li>
         <?php } ?>
         <?php if($_SESSION['user']['role']=='Anonymous') {?>
             <li class="nav-item">
                 <a class="nav-link" href="./login.php">
-                    <i class="nav-icon icon-user"></i> Login</a>
+                    <i class="nav-icon cil-user"></i> Login</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./#">
-                    <i class="nav-icon icon-user"></i> Register</a>
+                    <i class="nav-icon cil-user-follow"></i> Register</a>
             </li>
         <?php } else { ?>
           <li class="nav-item">
                 <a class="nav-link" href="./logout.php">
-                    <i class="nav-icon icon-user"></i> Logout</a>
+                    <i class="nav-icon cil-exit-to-app"></i> Logout</a>
             </li>
         <?php } ?>
       </ul>

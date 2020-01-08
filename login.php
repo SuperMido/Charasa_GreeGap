@@ -35,11 +35,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-    <meta name="author" content="Łukasz Holeczek">
-    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>Login - Training Management System</title>
-    <!-- Icons-->
+      <meta name="author" content="Charasa Team - University of Greenwich (Vietnam) - Da Nang Campus">
+      <link rel="icon" type="image/png" sizes="16x16" href="assets/img/brand/icon.png">
+      <title>GreeGAP - Clean Food Chain Management System</title>
+      <!-- Icons-->
     <link href="assets/node_modules/@coreui/icons/css/coreui-icons.min.css" rel="stylesheet">
     <link href="assets/node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
     <link href="assets/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
@@ -88,8 +87,12 @@
             <div class="card text-white bg-primary py-5 d-md-down-none" style="width:44%">
               <div class="card-body text-center">
                 <div>
-                  <h2>Training Management System</h2>
-                  <p>This system was developed by FPT Co. It used to manages the activity of “Training” for internal training program of the company.</p>
+                    <img src="assets/img/brand/logicon.png">
+                    <br>
+                    <h3>Clean Food Chain Management System</h3>
+                    <br>
+                    <p>Developed by <strong>Charasa Team</strong></p>
+                    <p><strong>University of Greenwich (Vietnam)</strong> - <strong>Da Nang</strong> Campus</p>
                 </div>
               </div>
             </div>
