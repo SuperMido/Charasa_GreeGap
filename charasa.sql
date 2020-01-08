@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 08, 2020 at 06:34 PM
+-- Generation Time: Jan 08, 2020 at 06:40 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -100,6 +100,7 @@ CREATE TABLE IF NOT EXISTS `rating` (
   `rating` int(11) NOT NULL,
   `count` int(11) NOT NULL,
   `feedback` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`),
   KEY `productid` (`productid`)
@@ -109,8 +110,8 @@ CREATE TABLE IF NOT EXISTS `rating` (
 -- Dumping data for table `rating`
 --
 
-INSERT INTO `rating` (`id`, `userid`, `productid`, `rating`, `count`, `feedback`) VALUES
-(1, 5, 1, 4, 10, 'Alo alo');
+INSERT INTO `rating` (`id`, `userid`, `productid`, `rating`, `count`, `feedback`, `create_at`) VALUES
+(1, 5, 1, 4, 10, 'Alo alo', '2020-01-08 18:39:54');
 
 -- --------------------------------------------------------
 
