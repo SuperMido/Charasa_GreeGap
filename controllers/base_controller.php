@@ -26,4 +26,16 @@ class BaseController
       header('Location: index.php?controller=pages&action=error');
     }
   }
+    function api($file, $data = array())
+    {
+        // Kiểm tra file gọi đến có tồn tại hay không?
+        $view_file = 'views/' . $this->folder . '/' . $file . '.php';
+        if (is_file($view_file)) {
+            extract($data);
+            require_once($view_file);
+        } else {
+            // Nếu file muốn gọi ra không tồn tại thì chuyển hướng đến trang báo lỗi.
+            header('Location: index.php?controller=pages&action=error');
+        }
+    }
 }

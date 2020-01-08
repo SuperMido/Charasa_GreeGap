@@ -38,7 +38,7 @@
 	// Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 
 	 $controllers = array(
-	   'pages' => ['home', 'error'],
+	   'pages' => ['home', 'error', 'product'],
 	   'source' => ['index', 'add'],
        'farming'=>['index', 'add','harvest'],
        'transport' => ['index', 'add'],

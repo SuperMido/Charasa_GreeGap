@@ -1,5 +1,6 @@
 <?php
 require_once('controllers/base_controller.php');
+require_once('models/product.php');
 
 class PagesController extends BaseController
 {
@@ -16,5 +17,12 @@ class PagesController extends BaseController
   public function error()
   {
     $this->render('error');
+  }
+  public function product()
+  {
+      $hash = $_GET['hash'];
+      $productInfo = Product::fetchAllData($hash);
+      $data = array('productInfo' => $productInfo);
+      $this->api('product', $data);
   }
 }
