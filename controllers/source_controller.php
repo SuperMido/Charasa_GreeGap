@@ -11,13 +11,13 @@ class SourceController extends BaseController
 
   function index()
   {
-    $sources = Source::findbyUser(1);
+    $sources = Source::findbyUser($_SESSION['user']['id']);
     $data = array('sources' => $sources);
     $this->render('index', $data);
   }
   function add()
   {
-    Source::add(1,$_POST['name'],$_POST['des']);
+    Source::add($_SESSION['user']['id'],$_POST['name'],$_POST['des']);
     header("Location: index.php?controller=source");
   }
 }

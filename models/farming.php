@@ -25,7 +25,7 @@ class Farming
     public $farmid;
     public $name;
     public $des;
-    public $avg_temp;
+    public $avg_tem;
     public $avg_hum;
     public $avg_humS;
     public $create_at;
@@ -33,13 +33,13 @@ class Farming
     public $pre_hash;
     public $hash;
 
-    function __construct($id,$farmid, $name, $des, $avg_temp, $avg_hum, $avg_humS, $create_at, $pre_hash, $hash, $update_at)
+    function __construct($id,$farmid, $name, $des, $avg_tem, $avg_hum, $avg_humS, $create_at, $pre_hash, $hash, $update_at)
     {
         $this->id = $id;
         $this->farmid = $farmid;
         $this->name = $name;
         $this->des = $des;
-        $this->avg_temp = $avg_temp;
+        $this->avg_tem = $avg_tem;
         $this->avg_hum = $avg_hum;
         $this->avg_humS = $avg_humS;
         $this->create_at = $create_at;
@@ -55,7 +55,7 @@ class Farming
 
     function execHash()
     {
-        $hash = hash('sha256', $this->id .$this->farmid . $this->name . $this->des . $this->avg_temp . $this->avg_hum . $this->avg_humS . $this->create_at . $this->update_at . $this->pre_hash);
+        $hash = hash('sha256', $this->id .$this->farmid . $this->name . $this->des . $this->avg_tem . $this->avg_hum . $this->avg_humS . $this->create_at . $this->update_at . $this->pre_hash);
     }
 
     static function harvest($id)
@@ -64,26 +64,27 @@ class Farming
         $date = getCurrentDate();
         //$hash = hash('sha256', $farmid . $name . $des . $pre_hash);
         $db = DB::getInstance();
+        $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
         $req = $db->prepare("SELECT * FROM sensorlogs WHERE productid = :id;");
         $req->bindValue(':id',$id);
         $req->execute();
 
 
         foreach ($req->fetchAll() as $item){
-            $templist[] = new Log($item['id'], $item['sensorid'], $item['productid'], $item['avg_temp'],$item['avg_hum'],$item['avg_humS']);
+            $templist[] = new Log($item['id'], $item['sensorid'], $item['productid'], $item['avg_tem'],$item['avg_hum'],$item['avg_humS']);
         }
 
         $logged = $templist[0];
-        $avg_temp = $logged->avg_temp;
+        $avg_tem = $logged->avg_tem;
         $avg_hum = $logged->avg_hum;
         $avg_humS = $logged->avg_humS;
 
-        $req=$db->prepare("UPDATE farming SET avg_temp=:avg_temp,avg_hum=:avg_hum,avg_humS=:avg_humS,update_at=:date WHERE id=:id;");
-        $req->bindValue('avg_temp',$avg_temp);
-        $req->bindValue('avg_hum',$avg_hum);
-        $req->bindValue('avg_humS',$avg_humS);
-        $req->bindValue('update_at',$date);
-        $req->bindValue('id',$id);
+        $req=$db->prepare("UPDATE farming SET avg_tem=:avg_tem,avg_hum=:avg_hum,avg_humS=:avg_humS,update_at=:date WHERE id=:id;");
+        $req->bindValue(':avg_tem',$avg_tem);
+        $req->bindValue(':avg_hum',$avg_hum);
+        $req->bindValue(':avg_humS',$avg_humS);
+        $req->bindValue(':date',$date);
+        $req->bindValue(':id',$id);
         $req->execute();
 
         $prod = [];
@@ -91,10 +92,10 @@ class Farming
         $req->bindValue('id',$id);
         $req->execute();
         foreach ($req->fetchAll() as $item){
-            $prod[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], $item['avg_temp'],$item['avg_hum'],$item['avg_humS'],  $item['create_at'],$item['pre_hash'], $item['hash'],$item['update_at']);
+            $prod[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], $item['avg_tem'],$item['avg_hum'],$item['avg_humS'],  $item['create_at'],$item['pre_hash'], $item['hash'],$item['update_at']);
         }
         $final = $prod[0];
-        $hash = hash('sha256', $final->id . $final->farmid . $final->name . $final->des. $final->avg_temp. $final->avg_hum. $final->avg_humS. $final->create_at. $final->pre_hash. $final->update_at);
+        $hash = hash('sha256', $final->id . $final->farmid . $final->name . $final->des. $final->avg_tem. $final->avg_hum. $final->avg_humS. $final->create_at. $final->pre_hash. $final->update_at);
 
         $req=$db->prepare("UPDATE farming SET hash=:hash WHERE id=:id;");
         $req->bindValue('hash',$hash);
@@ -168,20 +169,20 @@ class Farming
         $req->bindValue(':create_at', $date);
         $req->bindValue(':pre_hash', $pre_hash);
         $req->execute();
+        
+        $id = $db->lastInsertId();
 
         $new = [];
-        $db2 = DB::getInstance();
-        $req2 = $db2->prepare("SELECT * FROM farming WHERE pre_hash = :pre_hash;");
-        $req2->bindValue('pre_hash',$pre_hash);
+        $req2 = $db->prepare("SELECT * FROM farming WHERE id = :id;");
+        $req2->bindValue('id',$id);
         $req2->execute();
         foreach ($req2->fetchAll() as $item){
-            $new[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], $item['avg_temp'],$item['avg_hum'],$item['avg_humS'],  $item['create_at'],$item['update_at'],$item['pre_hash'], $item['hash']);
+            $new[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], NULL , NULL , NULL ,  $item['create_at'],$item['update_at'],$item['pre_hash'], $item['hash']);
         }
 
         $productid = $new[0];
 
-        $db3 = DB::getInstance();
-        $req3 = $db3->prepare("INSERT INTO sensorlogs(sensorid, productid) VALUES(:sensorid,:productid);");
+        $req3 = $db->prepare("INSERT INTO sensorlogs(sensorid, productid) VALUES(:sensorid,:productid);");
         $req3->bindValue('sensorid',$sensorid);
         $req3->bindValue('productid',$productid->id);
         $req3->execute();

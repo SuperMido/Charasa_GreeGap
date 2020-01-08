@@ -11,13 +11,13 @@ class SensorController extends BaseController
 
   function index()
   {
-    $sensors = Sensor::findbyUser(1);
+    $sensors = Sensor::findbyUser($_SESSION['user']['id']);
     $data = array('sensors' => $sensors);
     $this->render('index', $data);
   }
   function add()
   {
-    Sensor::add(1,$_POST['name'],$_POST['des'],$_POST['mac']);
+    Sensor::add($_SESSION['user']['id'],$_POST['des'],$_POST['mac']);
     header("Location: index.php?controller=sensor");
   }
 }

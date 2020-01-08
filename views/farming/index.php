@@ -164,7 +164,7 @@
               <div><?=$product->create_at;?><div>
             </td>
             <td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">
-                <a href="./index.php?controller=farming&action=harvest&id=<?=$product->id;?>"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <a href="./index.php?controller=farming&action=harvest&id=<?=$product->id;?>"><button type="button" class="btn btn-primary">
                     Harvest
                 </button></a>
             </td>
@@ -208,7 +208,7 @@
                               <div><?=$harvested->update_at;?><div>
                           </td>
                           <td class="text-center align-middle">
-                              <div><?=$harvested->avg_temp;?><div>
+                              <div><?=$harvested->avg_tem;?><div>
                           </td>
                           <td class="text-center align-middle">
                               <div><?=$harvested->avg_hum;?><div>
@@ -217,12 +217,12 @@
                               <div><?=$harvested->avg_humS;?><div>
                           </td>
                           <td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">
-                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal<?=$harvested->id;?>">
                                   Generate QR
                               </button>
 
                               <!-- Modal -->
-                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal fade" id="Modal<?=$harvested->id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                       <div class="modal-content">
                                           <div class="modal-header">

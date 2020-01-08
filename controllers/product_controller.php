@@ -11,14 +11,14 @@ class ProductController extends BaseController
 
   function index()
   {
-    $products = Product::findAddedbyStore(1);
+    $products = Product::findAddedbyStore($_SESSION['user']['id']);
     $data = array('products' => $products);
     $this->render('index', $data);
   }
 
   function add()
   {
-    Product::add(1,$_POST['name'],$_POST['des'],$_POST['pre_hash']);
+    Product::add($_SESSION['user']['id'],$_POST['name'],$_POST['des'],$_POST['pre_hash']);
     header("Location: index.php?controller=product");
   }
 

@@ -11,9 +11,9 @@ class FarmingController extends BaseController
 
   function index()
   {
-    $products = Farming::findbyFarm(1);
-    $sensors = Farming::getSensor(1);
-    $harvesteds = Farming::findHarvested(1);
+    $products = Farming::findbyFarm($_SESSION['user']['id']);
+    $sensors = Farming::getSensor($_SESSION['user']['id']);
+    $harvesteds = Farming::findHarvested($_SESSION['user']['id']);
     $data = array('products' => $products, 'sensors' => $sensors,'harvesteds'=>$harvesteds);
     $this->render('index', $data);
   }
@@ -26,7 +26,7 @@ class FarmingController extends BaseController
 
   function add()
   {
-    Farming::add(1,$_POST['name'],$_POST['des'],$_POST['pre_hash'],$_POST['sensorid']);
+    Farming::add($_SESSION['user']['id'],$_POST['name'],$_POST['des'],$_POST['pre_hash'],$_POST['sensorid']);
     header("Location: index.php?controller=farming");
   }
 
