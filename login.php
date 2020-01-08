@@ -1,86 +1,28 @@
 <?php
   session_start();
-  $error=NULL;
-  if(isset($_POST['role']))
+  if($_SESSION['user']['role'] != "Anonymous") header("Location: index.php");
+  if(isset($_POST['username']))
   {
+    $error = NULL;
     require_once('connection.php');
     $db = DB::getInstance();
-    $role = $_POST['role'];
-    $email = $_POST['email'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
-      switch ($role)
-      {
-      case 'Administrator':
-        $req = $db->prepare("SELECT Email, Password FROM gu_admin WHERE Email = :email;");
-        $req->bindValue(':email',$email);
-        $req->execute();
-        $user = $req->fetch();
-        if (!isset($user['Email']))
-        {
-          $error = "Invalid Email";
-          break;
-        }
-        if ($password != $user['Password'])
-        {
-          $error = "Invalid Password";
-          break;
-        }
-        break;
-      case 'Staff':
-        $req = $db->prepare("SELECT StaffID,Email, Password FROM gu_staff WHERE Email = :email;");
-        $req->bindValue(':email',$email);
-        $req->execute();
-        $user = $req->fetch();
-        if (!isset($user['Email']))
-        {
-          $error = "Invalid Email";
-          break;
-        }
-        if ($password != $user['Password'])
-        {
-          $error = "Invalid Password";
-          break;
-        }
-        $_SESSION['id'] = $user['StaffID'];
-        break;
-      case 'Trainer':
-        $req = $db->prepare("SELECT TrainerID,Email, Password FROM gu_trainer WHERE Email = :email;");
-        $req->bindValue(':email',$email);
-        $req->execute();
-        $user = $req->fetch();
-        if (!isset($user['Email']))
-        {
-          $error = "Invalid Email";
-          break;
-        }
-        if ($password != $user['Password'])
-        {
-          $error = "Invalid Password";
-          break;
-        }
-        $_SESSION['id'] = $user['TrainerID'];
-        break;
-      case 'Trainee':
-        $req = $db->prepare("SELECT TraineeID,Email, Password FROM gu_trainee WHERE Email = :email;");
-        $req->bindValue(':email',$email);
-        $req->execute();
-        $user = $req->fetch();
-        if (!isset($user['Email']))
-        {
-          $error = "Invalid Email";
-          break;
-        }
-        if ($password != $user['Password'])
-        {
-          $error = "Invalid Password";
-          break;
-        }
-        $_SESSION['id'] = $user['TraineeID'];
-        break;
+    $req = $db->prepare("SELECT * FROM user WHERE username = :username;");
+    $req->bindValue(':username',$username);
+    $req->execute();
+    $user = $req->fetch();
+    if ($username != $user['username'])
+    {
+      $error = "Invalid Username!";
+    }
+    else if ($password != $user['password'])
+    {
+      $error = "Invalid Password!";
     }
     if(!isset($error))
     {
-      $_SESSION['role'] = $role;
+      $_SESSION['user'] = $user;
       header("Location: index.php");
       exit;
     }
@@ -120,23 +62,10 @@
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">
-                      <i class="icon-user"></i>
-                    </span>
-                  </div>
-                  <select class="form-control" name="role">
-                    <option value="Administrator">Administrator</option>
-                    <option value="Staff">Staff</option>
-                    <option value="Trainer">Trainer</option>
-                    <option value="Trainee">Trainee</option>
-                  </select>
-                </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
                       <i class="icon-envelope-open"></i>
                     </span>
                   </div>
-                  <input class="form-control" type="text" name="email" placeholder="Email" required>
+                  <input class="form-control" type="text" name="username" placeholder="Username" required>
                 </div>
                 <div class="input-group mb-4">
                   <div class="input-group-prepend">
@@ -145,8 +74,9 @@
                     </span>
                   </div>
                   <input class="form-control" type="password" name="password" placeholder="Password" required>
+                  <input type="submit" style="display:none"/>
                 </div>
-                <span class="help-block"><?=$error;?></span>
+                <span class="help-block"><?php if(isset($error)) echo $error;?></span>
                 </form>
                 <div class="row">
                   <div class="col-6">

@@ -2,70 +2,51 @@
   <div class="sidebar">
     <nav class="sidebar-nav">
       <ul class="nav">
-
-          <?php if($_SESSION['role']=='Anonymous') {?>
-              <li class="nav-item">
-                  <a class="nav-link" href="./login.php">
-                      <i class="nav-icon icon-user"></i> Login</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="./register.php">
-                      <i class="nav-icon icon-user"></i> Register</a>
-              </li>
-          <?php } ?>
-
-        <?php //if($_SESSION['role']=='Administrator') {?>
-        <!--<li class="nav-item">
-          <a class="nav-link" href="./?controller=trainer">
-            <i class="nav-icon icon-user"></i> Trainers</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./?controller=staff">
-            <i class="nav-icon icon-user"></i> Staffs</a>
-        </li>
-        <?php //} ?>
-        <?php //if($_SESSION['role']=='Staff') {?>
-        <li class="nav-item">
-          <a class="nav-link" href="./?controller=trainee">
-            <i class="nav-icon icon-user"></i> Trainees</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./?controller=category">
-            <i class="nav-icon icon-pencil"></i> Categories</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./?controller=course">
-            <i class="nav-icon icon-pencil"></i> Courses</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./?controller=topic">
-            <i class="nav-icon icon-pencil"></i> Topics</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./?controller=trainer">
-            <i class="nav-icon icon-user"></i> Trainers</a>
-        </li>
-        <?php //} ?>
-        <?php //if($_SESSION['role']=='Trainer') {?>
-        <li class="nav-item">
-          <a class="nav-link" href="./?controller=topic&action=inprogress">
-            <i class="nav-icon icon-pencil"></i> Assigned Topic</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./?controller=trainer&action=detail">
-            <i class="nav-icon icon-user"></i> Edit information</a>
-        </li>
-        <?php //} ?>
-        <?php //if($_SESSION['role']=='Trainee') {?>
-        <li class="nav-item">
-          <a class="nav-link" href="./?controller=course&action=inprogress">
-            <i class="nav-icon icon-pencil"></i> Assigned Course</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./?controller=trainee&action=detail">
-            <i class="nav-icon icon-user"></i> My Information</a>
-        </li>-->
-        <?php //} ?>
+        <?php if($_SESSION['user']['role']=='provider') {?>
+            <li class="nav-item">
+                <a class="nav-link" href="./?controller=source">
+                    <i class="nav-icon icon-user"></i> Manage Source</a>
+            </li>
+        <?php } else if($_SESSION['user']['role']=='farm') { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="./?controller=farming">
+                    <i class="nav-icon icon-user"></i> Manage Farm</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./?controller=sensor">
+                    <i class="nav-icon icon-user"></i> Manage Sensor</a>
+            </li>
+        <?php } else if($_SESSION['user']['role']=='transporter') { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="./?controller=transport">
+                    <i class="nav-icon icon-user"></i> Manage Transport</a>
+            </li>
+        <?php } else if($_SESSION['user']['role']=='store') { ?>
+            <li class="nav-item">
+                <a class="nav-link" href="./?controller=product">
+                    <i class="nav-icon icon-user"></i> Manage Product</a>
+            </li>
+        <?php } else { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="./">
+              <i class="nav-icon icon-user"></i> Scan Now!</a>
+          </li>
+        <?php } ?>
+        <?php if($_SESSION['user']['role']=='Anonymous') {?>
+            <li class="nav-item">
+                <a class="nav-link" href="./login.php">
+                    <i class="nav-icon icon-user"></i> Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./#">
+                    <i class="nav-icon icon-user"></i> Register</a>
+            </li>
+        <?php } else { ?>
+          <li class="nav-item">
+                <a class="nav-link" href="./logout.php">
+                    <i class="nav-icon icon-user"></i> Logout</a>
+            </li>
+        <?php } ?>
       </ul>
     </nav>
     <button class="sidebar-minimizer brand-minimizer" type="button"></button>

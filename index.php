@@ -9,8 +9,8 @@
 	//Main index
 	session_start();
 	require_once('connection.php');
-	if(!isset($_SESSION['role']))
-        $_SESSION['role'] = "Anonymous";
+	if(!isset($_SESSION['user']))
+        $_SESSION['user']['role'] = "Anonymous";
 	if (isset($_GET['controller'])) {
 	  $controller = $_GET['controller'];
 	  if (isset($_GET['action'])) {

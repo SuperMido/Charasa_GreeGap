@@ -1,49 +1,48 @@
 <?php
 	$controllers = NULL;
-//	switch ($_SESSION['role'])
-//	{
-//		case 'Administrator':
-//			$controllers = array(
-//			  'pages' => ['home', 'error'],
-//			  'trainer' => ['index', 'update', 'delete', 'show', 'add'],
-//			  'staff' => ['index', 'update', 'delete', 'show', 'add']
-//			);
-//			break;
-//		case 'Staff':
-//			$controllers = array(
-//			  'pages' => ['home', 'error'],
-//			  'category' => ['index', 'update', 'delete', 'show', 'add'],
-//			  'trainer' => ['index', 'update', 'delete', 'show', 'add'],
-//			  'topic' => ['index', 'update', 'delete', 'show', 'add'],
-//			  'trainee' => ['index', 'update', 'delete', 'show', 'add'],
-//			  'course' => ['index', 'update', 'delete', 'show', 'add', 'list_unassign', 'add_trainee', 'list_assign', 'remove_trainee']
-//			);
-//			break;
-//		case 'Trainer':
-//			$controllers = array(
-//			  'pages' => ['home', 'error'],
-//			  'trainer' => ['detail'],
-//			  'topic' => ['inprogress']
-//			);
-//			break;
-//		case 'Trainee':
-//			$controllers = array(
-//			  'pages' => ['home', 'error'],
-//			  'trainee' => ['detail'],
-//			  'course' => ['inprogress']
-//			);
-//			break;
-//	}
+	switch ($_SESSION['user']['role'])
+	{
+		case 'provider':
+			$controllers = array(
+			  'pages' => ['home', 'error','product'],
+			  'source' => ['index', 'add']
+			);
+			break;
+		case 'farm':
+			$controllers = array(
+			  'pages' => ['home', 'error','product'],
+			  'farming'=>['index', 'add','harvest'],
+			  'sensor' => ['index', 'add']
+			);
+			break;
+		case 'transporter':
+			$controllers = array(
+			  'pages' => ['home', 'error','product'],
+			  'transport' => ['index', 'add']
+			);
+			break;
+		case 'store':
+			$controllers = array(
+			  'pages' => ['home', 'error','product'],
+			  'product' => ['index', 'add']
+			);
+			break;
+		default:
+			$controllers = array(
+			  'pages' => ['home', 'error','product'],
+		  	);
+			break;
+	}
 
 	// Các controllers trong hệ thống và các action có thể gọi ra từ controller đó.
 
-	 $controllers = array(
-	   'pages' => ['home', 'error', 'product'],
-	   'source' => ['index', 'add'],
-       'farming'=>['index', 'add','harvest'],
-       'transport' => ['index', 'add'],
-		'sensor' => ['index', 'add'],
-		'product' => ['index', 'add']);
+	//  $controllers = array(
+	//    'pages' => ['home', 'error', 'product'],
+	//    'source' => ['index', 'add'],
+    //    'farming'=>['index', 'add','harvest'],
+    //    'transport' => ['index', 'add'],
+	// 	'sensor' => ['index', 'add'],
+	// 	'product' => ['index', 'add']);
 
 	// Nếu các tham số nhận được từ URL không hợp lệ (không thuộc list controller và action có thể gọi
 	// thì trang báo lỗi sẽ được gọi ra.
