@@ -25,11 +25,11 @@ class Product
         $list = [];
         // Find added source by user id
         $db = DB::getInstance();
-        $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
         $req = $db->prepare("SELECT * FROM product WHERE hash = :hash;");
         $req->bindValue(':hash',$hash);
         $req->execute();
         foreach ($req->fetchAll() as $item) {
+            $list["product_id"] = $item['id'];
             $list["product_name"]=$item['name'];
             $list["product_des"]=$item['des'];
             $list["product_create"]=$item['create_at'];
@@ -115,7 +115,6 @@ class Product
         $list = [];
         // Find added source by user id
         $db = DB::getInstance();
-        $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
         $req = $db->prepare("SELECT * FROM product WHERE storeid = :storeid;");
         $req->bindValue(':storeid',$storeid);
         $req->execute();
@@ -131,7 +130,6 @@ class Product
         $hash = hash('sha256', $storeid . $name . $des . $date . $pre_hash);
         //Add source to database
         $db = DB::getInstance();
-        $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
         $req = $db->prepare("INSERT INTO product(storeid, name, des, create_at, pre_hash, hash)  VALUES (:storeid, :name, :des, :create_at,:pre_hash, :hash);");
         $req->bindValue(':storeid', $storeid);
         $req->bindValue(':name', $name);

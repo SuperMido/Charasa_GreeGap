@@ -21,6 +21,7 @@
     <link href="assets/node_modules/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
     <link href="assets/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="assets/node_modules/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+    <link href="assets/node_modules/bootstrap/dist/js/bootstrap-rating.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/@coreui/icons/css/all.min.css">
       <!-- Main styles for this application-->
     <link href="assets/css/style.css" rel="stylesheet">

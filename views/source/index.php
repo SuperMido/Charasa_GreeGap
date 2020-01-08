@@ -7,20 +7,28 @@
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="text-input">Name</label>
             <div class="col-md-9">
-              <input class="form-control" id="text-input" type="text" name="name">
+              <input class="form-control" id="text-input" type="text" name="name" required>
             </div>
           </div>
           <div class="form-group row">
             <label class="col-md-3 col-form-label" for="text-input">Description</label>
             <div class="col-md-9">
-              <input class="form-control" id="text-input" type="text" name="des">
+              <input class="form-control" id="text-input" type="text" name="des" required>
+              <input type="submit" style="display:none"/>
             </div>
           </div>
         </form>
       </div>
       <div class="card-footer">
-        <button class="btn btn-sm btn-primary" type="submit" onclick="$('#frmChange').submit();">
+        <button class="btn btn-sm btn-primary" type="submit" onclick="return submitForm();">
           <i class="fa fa-dot-circle-o"></i> Add</button>
+        <!-- Script for required -->
+        <script type="text/javascript" language="javascript">
+                function submitForm()
+                {
+                    document.getElementById('form').submit();
+                }
+        </script>
       </div>
     </div>
     <div class="card">
