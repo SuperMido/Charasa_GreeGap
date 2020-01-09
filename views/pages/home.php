@@ -23,7 +23,7 @@
                             } else {
                                 //document.getElementById("hash").value = res;
                                 $.ajax({
-                                    url:'http://localhost/Charasa_GreeGap/?controller=pages&action=product',
+                                    url:'./?controller=pages&action=product',
                                     type: 'GET',
                                     data: {hash: res},
                                     success:function(data) {
