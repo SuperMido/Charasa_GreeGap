@@ -110,6 +110,7 @@
         </div>
     </div>
 </div>
+<?php if($_SESSION['user']['role'] != "Anonymous") { ?>
 <div class="card">
     <div class="card-header"> <strong>Write</strong> Feedback </div>
     <div class="card-body">
@@ -149,5 +150,6 @@
     </script>
     </div>
 </div>
+<?php } ?>
 <script src="assets/node_modules/bootstrap/dist/js/bootstrap-rating.min.js"></script>
 <?php } ?>
