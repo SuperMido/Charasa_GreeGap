@@ -3,21 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="573cfab0-10c3-454e-b661-d7f06a4956c0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/avatars/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/avatars/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/avatars/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/avatars/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/avatars/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/avatars/6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/avatars/7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/avatars/8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/brand/LogoGreenUni.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/brand/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/img/brand/sygnet.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layout.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/partials/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/farming_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/farming_controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/pages_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/pages_controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/product_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/product_controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/transport_controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/transport_controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/farming.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/farming.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/transport.php" beforeDir="false" afterPath="$PROJECT_DIR$/models/transport.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/farming/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/farming/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/pages/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/pages/product.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/product/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/product/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/transport/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/views/transport/index.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +72,8 @@
       <workItem from="1578274148973" duration="11771000" />
       <workItem from="1578317217967" duration="6274000" />
       <workItem from="1578358642603" duration="15728000" />
-      <workItem from="1578485681674" duration="4081000" />
+      <workItem from="1578485681674" duration="4745000" />
+      <workItem from="1578534887322" duration="4255000" />
     </task>
     <servers />
   </component>

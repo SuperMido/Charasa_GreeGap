@@ -158,35 +158,46 @@ class Farming
 
     static function add($farmid, $name, $des, $pre_hash, $sensorid)
     {
+
         $date = getCurrentDate();
         //$hash = hash('sha256', $farmid . $name . $des . $pre_hash);
         //Add source to database
         $db = DB::getInstance();
-        $req = $db->prepare("INSERT INTO farming(farmid, name, des, create_at, pre_hash)  VALUES (:farmid, :name, :des, :create_at, :pre_hash);");
-        $req->bindValue(':farmid', $farmid);
-        $req->bindValue(':name', $name);
-        $req->bindValue(':des', $des);
-        $req->bindValue(':create_at', $date);
+        $req = $db->prepare("SELECT * FROM source WHERE hash=:pre_hash;");
         $req->bindValue(':pre_hash', $pre_hash);
         $req->execute();
-        
-        $id = $db->lastInsertId();
-
-        $new = [];
-        $req2 = $db->prepare("SELECT * FROM farming WHERE id = :id;");
-        $req2->bindValue('id',$id);
-        $req2->execute();
-        foreach ($req2->fetchAll() as $item){
-            $new[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], NULL , NULL , NULL ,  $item['create_at'],$item['update_at'],$item['pre_hash'], $item['hash']);
+        foreach ($req->fetchAll() as $item) {
+            $prev[] = $item->id;
         }
+        if(!empty($prev)){
+            $req = $db->prepare("INSERT INTO farming(farmid, name, des, create_at, pre_hash)  VALUES (:farmid, :name, :des, :create_at, :pre_hash);");
+            $req->bindValue(':farmid', $farmid);
+            $req->bindValue(':name', $name);
+            $req->bindValue(':des', $des);
+            $req->bindValue(':create_at', $date);
+            $req->bindValue(':pre_hash', $pre_hash);
+            $req->execute();
 
-        $productid = $new[0];
+            $id = $db->lastInsertId();
 
-        $req3 = $db->prepare("INSERT INTO sensorlogs(sensorid, productid) VALUES(:sensorid,:productid);");
-        $req3->bindValue('sensorid',$sensorid);
-        $req3->bindValue('productid',$productid->id);
-        $req3->execute();
+            $new = [];
+            $req2 = $db->prepare("SELECT * FROM farming WHERE id = :id;");
+            $req2->bindValue('id',$id);
+            $req2->execute();
+            foreach ($req2->fetchAll() as $item){
+                $new[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], NULL , NULL , NULL ,  $item['create_at'],$item['update_at'],$item['pre_hash'], $item['hash']);
+            }
 
+            $productid = $new[0];
+
+            $req3 = $db->prepare("INSERT INTO sensorlogs(sensorid, productid) VALUES(:sensorid,:productid);");
+            $req3->bindValue('sensorid',$sensorid);
+            $req3->bindValue('productid',$productid->id);
+            $req3->execute();
+
+            return 1;
+        }
+        else return 0;
     }
 
     function isValid()

@@ -1,7 +1,11 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="card">
+      <?php if($is_legit==0){?>
+          <div class="alert alert-danger" role="alert">You have scanned a fake product! Please try again or contact authors for further details!</div>
+      <?php }?>
       <div class="card-header"> <strong>Add</strong> Farm item </div>
+    <div class="card">
+
       <!--<div class="card-body">
         <form id="frmChange" class="form-horizontal" action="./?controller=source&action=add" method="post" enctype="multipart/form-data">
           <div class="form-group row">

@@ -12,14 +12,21 @@ class TransportController extends BaseController
   function index()
   {
     $products = Transport::findbyTransporter($_SESSION['user']['id']);
-    $data = array('products' => $products);
+    $data = array('products' => $products,'is_legit'=>1);
     $this->render('index', $data);
   }
 
   function add()
   {
-    Transport::add($_SESSION['user']['id'],$_POST['name'],$_POST['des'],$_POST['pre_hash'],$_POST['quantity']);
-    header("Location: index.php?controller=transport");
+    $check = Transport::add($_SESSION['user']['id'],$_POST['name'],$_POST['des'],$_POST['pre_hash'],$_POST['quantity']);
+    if($check==1){
+        header("Location: index.php?controller=transport");
+    }
+    else{
+        $products = Transport::findbyTransporter($_SESSION['user']['id']);
+        $data = array('products' => $products,'is_legit'=>0);
+        $this->render('index', $data);
+    }
   }
 
 //  function sensor()

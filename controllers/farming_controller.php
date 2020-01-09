@@ -14,7 +14,7 @@ class FarmingController extends BaseController
     $products = Farming::findbyFarm($_SESSION['user']['id']);
     $sensors = Farming::getSensor($_SESSION['user']['id']);
     $harvesteds = Farming::findHarvested($_SESSION['user']['id']);
-    $data = array('products' => $products, 'sensors' => $sensors,'harvesteds'=>$harvesteds);
+    $data = array('products' => $products, 'sensors' => $sensors,'harvesteds'=>$harvesteds,'is_legit'=>1);
     $this->render('index', $data);
   }
 
@@ -26,8 +26,17 @@ class FarmingController extends BaseController
 
   function add()
   {
-    Farming::add($_SESSION['user']['id'],$_POST['name'],$_POST['des'],$_POST['pre_hash'],$_POST['sensorid']);
-    header("Location: index.php?controller=farming");
+    $check = Farming::add($_SESSION['user']['id'],$_POST['name'],$_POST['des'],$_POST['pre_hash'],$_POST['sensorid']);
+    if($check==1){
+        header("Location: index.php?controller=farming");
+    }
+    else{
+        $products = Farming::findbyFarm($_SESSION['user']['id']);
+        $sensors = Farming::getSensor($_SESSION['user']['id']);
+        $harvesteds = Farming::findHarvested($_SESSION['user']['id']);
+        $data = array('products' => $products, 'sensors' => $sensors,'harvesteds'=>$harvesteds,'is_legit'=>$check);
+        $this->render('index', $data);
+    }
   }
 
 //  function sensor()

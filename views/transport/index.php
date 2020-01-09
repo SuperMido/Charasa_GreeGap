@@ -1,5 +1,8 @@
 <div class="row">
   <div class="col-md-12">
+      <?php if($is_legit==0){?>
+          <div class="alert alert-danger" role="alert">You have scanned a fake product! Please try again or contact authors for further details!</div>
+      <?php }?>
     <div class="card">
       <div class="card-header"> <strong>Add</strong> Transport transaction </div>
       <!--<div class="card-body">

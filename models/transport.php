@@ -68,18 +68,30 @@ class Transport
     static function add($transportid, $name, $des,$pre_hash, $quantity)
     {
         $date = getCurrentDate();
-        $hash = hash('sha256', $transportid . $name . $des .$quantity. $date.$pre_hash);
+
         //Add source to database
         $db = DB::getInstance();
-        $req = $db->prepare("INSERT INTO transport(transportid, name, des, quantity, create_at, pre_hash, hash)  VALUES (:transportid, :name, :des, :quantity, :create_at,:pre_hash, :hash);");
-        $req->bindValue(':transportid', $transportid);
-        $req->bindValue(':name', $name);
-        $req->bindValue(':des', $des);
-        $req->bindValue(':quantity', $quantity);
-        $req->bindValue(':create_at', $date);
+        $req = $db->prepare("SELECT * FROM farming WHERE hash=:pre_hash;");
         $req->bindValue(':pre_hash', $pre_hash);
-        $req->bindValue(':hash', $hash);
         $req->execute();
+        foreach ($req->fetchAll() as $item) {
+            $prev[] = $item->id;
+        }
+        if (!empty($prev)) {
+            $hash = hash('sha256', $transportid . $name . $des . $quantity . $date . $pre_hash);
+            $req = $db->prepare("INSERT INTO transport(transportid, name, des, quantity, create_at, pre_hash, hash)  VALUES (:transportid, :name, :des, :quantity, :create_at,:pre_hash, :hash);");
+            $req->bindValue(':transportid', $transportid);
+            $req->bindValue(':name', $name);
+            $req->bindValue(':des', $des);
+            $req->bindValue(':quantity', $quantity);
+            $req->bindValue(':create_at', $date);
+            $req->bindValue(':pre_hash', $pre_hash);
+            $req->bindValue(':hash', $hash);
+            $req->execute();
+
+            return 1;
+        }
+        else return 0;
     }
 
 }

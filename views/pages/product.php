@@ -1,3 +1,6 @@
+<?php if($productInfo==0){?>
+    <div class="alert alert-danger" role="alert">You have scanned a fake product! Please try again or contact authors for further details!</div>
+<?php } else{?>
 <div class="card">
     <div class="card-header"><strong>User Feedback</strong></div>
     <div class="card-body">
@@ -147,3 +150,4 @@
     </div>
 </div>
 <script src="assets/node_modules/bootstrap/dist/js/bootstrap-rating.min.js"></script>
+<?php } ?>
