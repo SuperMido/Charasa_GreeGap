@@ -7,7 +7,7 @@ class DB
         try {
           $username = "root";
           $password = "";
-          self::$instance = new PDO("mysql:host=localhost;dbname=charasa", $username, $password);
+          self::$instance = new PDO("mysql:host=localhost;dbname=charasa", $username, $password, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
         } catch (PDOException $ex) {
           die($ex->getMessage());
         }
