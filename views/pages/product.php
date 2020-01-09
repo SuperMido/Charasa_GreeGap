@@ -30,11 +30,11 @@
                 <dd class="col-sm-8"><?=$productInfo['create_at'];?></dd>
                 <dt class="col-sm-4">Product's harvest date </dt>
                 <dd class="col-sm-8"><?=$productInfo['update_at'];?></dd>
-                <dt class="col-sm-4">Product's average temperature </dt>
+                <dt class="col-sm-4">Product's average temperature (°C) </dt>
                 <dd class="col-sm-8"><?=$productInfo['avg_tem'];?></dd>
-                <dt class="col-sm-4">Product's average humidity </dt>
+                <dt class="col-sm-4">Product's average humidity (%)</dt>
                 <dd class="col-sm-8"><?=$productInfo['avg_hum'];?></dd>
-                <dt class="col-sm-4">Product's average soil's humidity </dt>
+                <dt class="col-sm-4">Product's average soil's humidity (%)</dt>
                 <dd class="col-sm-8"><?=$productInfo['avg_humS'];?></dd>
                 <dt class="col-sm-4">Product's seed's name </dt>
                 <dd class="col-sm-8"><?=$productInfo['seed_name'];?></dd>

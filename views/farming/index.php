@@ -184,9 +184,9 @@
                       <th class="text-center align-middle" style="width:20%">Description</th>
                       <th class="text-center align-middle" style="width:10%">Date Created</th>
                       <th class="text-center align-middle" style="width:10%">Date Updated</th>
-                      <th class="text-center align-middle" style="width:10%">Avg temp</th>
-                      <th class="text-center align-middle" style="width:10%">Avg hum</th>
-                      <th class="text-center align-middle" style="width:10%">Avg soil hum</th>
+                      <th class="text-center align-middle" style="width:10%">Avg temp (°C)</th>
+                      <th class="text-center align-middle" style="width:10%">Avg hum (%)</th>
+                      <th class="text-center align-middle" style="width:10%">Avg soil hum (%)</th>
                       <th class="text-center align-middle" style="width:154%">Action</th>
                   </tr>
                   </thead>
