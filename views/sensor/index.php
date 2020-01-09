@@ -30,8 +30,9 @@
                 <thead class="thead-light">
                   <tr>
                     <th class="text-center align-middle" style="width:5%">ID</th>
-                    <th class="text-center align-middle" style="width:70%">Description</th>
-                    <th class="text-center align-middle" style="width:25%">MAC Address</th>
+                    <th class="text-center align-middle" style="width:35%">Description</th>
+                    <th class="text-center align-middle" style="width:40%">MAC Address</th>
+                    <th class="text-center align-middle" style="width:20%">Created at</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -46,6 +47,9 @@
             <td class="text-center align-middle">
               <div><?=$sensor->mac;?><div>
             </td>
+              <td class="text-center align-middle">
+                  <div><?=$sensor->create_at;?><div>
+              </td>
           </tr>
           <?php } ?>
           </tbody>

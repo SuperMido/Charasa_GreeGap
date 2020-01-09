@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: Jan 08, 2020 at 07:43 PM
--- Server version: 5.7.24
--- PHP Version: 7.2.14
+-- Host: 127.0.0.1
+-- Generation Time: Jan 09, 2020 at 11:05 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.1.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,22 +28,19 @@ SET time_zone = "+00:00";
 -- Table structure for table `farming`
 --
 
-DROP TABLE IF EXISTS `farming`;
-CREATE TABLE IF NOT EXISTS `farming` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `farming` (
+  `id` int(11) NOT NULL,
   `farmid` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `des` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `avg_tem` float NOT NULL DEFAULT '0',
-  `avg_hum` float NOT NULL DEFAULT '0',
-  `avg_humS` float NOT NULL DEFAULT '0',
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `avg_tem` float NOT NULL DEFAULT 0,
+  `avg_hum` float NOT NULL DEFAULT 0,
+  `avg_humS` float NOT NULL DEFAULT 0,
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `pre_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `hash` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
-  `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `farmid` (`farmid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `farming`
@@ -54,7 +51,10 @@ INSERT INTO `farming` (`id`, `farmid`, `name`, `des`, `avg_tem`, `avg_hum`, `avg
 (7, 2, '23', '23', 0, 0, 0, '2020-01-08 09:49:51', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', 'b61b1f6a3db5184406acc9d86579ad20cd6f38827b9794c77e1819cbb7b9c89f', '2020-01-08 09:49:51'),
 (8, 2, '24', '24', 0, 0, 0, '2020-01-08 09:51:57', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '477d14903b3884f37cd641ff288f7d5a94c169429313cf7e7f4e7863ae1c6ae8', '2020-01-08 09:51:57'),
 (9, 2, '25', '25', 22, 22, 22, '2020-01-08 09:54:04', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '55477eeb42829df8b8200ceb45574b4bc9ad576ff5adf86fa4b7730ca6a5ce92', '2020-01-08 09:55:54'),
-(10, 2, '29', '29', 24, 24, 24, '2020-01-08 09:57:51', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '9b102b6bd442cb2a5b642cdcf7058eda55c704287010c13e1cad15ea883e9680', '2020-01-08 09:58:11');
+(10, 2, '29', '29', 24, 24, 24, '2020-01-08 09:57:51', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '9b102b6bd442cb2a5b642cdcf7058eda55c704287010c13e1cad15ea883e9680', '2020-01-08 09:58:11'),
+(11, 2, 'admin', 'admin', 0, 0, 0, '2020-01-09 01:59:05', '3141592654', '', '2020-01-09 01:59:05'),
+(12, 2, 'admin', 'aadminn', 0, 0, 0, '2020-01-09 02:34:56', 'hatgiong001', '', '2020-01-09 02:34:56'),
+(13, 2, 'admin', 'test', 0, 0, 0, '2020-01-09 02:43:36', 'hatgiong001', '', '2020-01-09 02:43:36');
 
 -- --------------------------------------------------------
 
@@ -62,18 +62,15 @@ INSERT INTO `farming` (`id`, `farmid`, `name`, `des`, `avg_tem`, `avg_hum`, `avg
 -- Table structure for table `product`
 --
 
-DROP TABLE IF EXISTS `product`;
-CREATE TABLE IF NOT EXISTS `product` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL,
   `storeid` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `des` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `pre_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `storeid` (`storeid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product`
@@ -92,19 +89,15 @@ INSERT INTO `product` (`id`, `storeid`, `name`, `des`, `create_at`, `pre_hash`, 
 -- Table structure for table `rating`
 --
 
-DROP TABLE IF EXISTS `rating`;
-CREATE TABLE IF NOT EXISTS `rating` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `rating` (
+  `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `productid` int(11) NOT NULL,
   `rating` int(11) NOT NULL,
   `count` int(11) NOT NULL,
   `feedback` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `userid` (`userid`),
-  KEY `productid` (`productid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `rating`
@@ -120,16 +113,12 @@ INSERT INTO `rating` (`id`, `userid`, `productid`, `rating`, `count`, `feedback`
 -- Table structure for table `scanned`
 --
 
-DROP TABLE IF EXISTS `scanned`;
-CREATE TABLE IF NOT EXISTS `scanned` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `scanned` (
+  `id` int(11) NOT NULL,
   `userid` int(11) NOT NULL,
   `productid` int(11) NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `userid` (`userid`),
-  KEY `productid` (`productid`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `scanned`
@@ -149,7 +138,11 @@ INSERT INTO `scanned` (`id`, `userid`, `productid`, `create_at`) VALUES
 (11, 5, 1, '2020-01-08 19:39:54'),
 (12, 5, 1, '2020-01-08 19:41:33'),
 (13, 5, 1, '2020-01-08 19:42:02'),
-(14, 5, 1, '2020-01-08 19:42:51');
+(14, 5, 1, '2020-01-08 19:42:51'),
+(15, 4, 2, '2020-01-09 03:12:37'),
+(16, 4, 2, '2020-01-09 03:12:58'),
+(17, 4, 2, '2020-01-09 03:34:43'),
+(18, 4, 2, '2020-01-09 03:38:40');
 
 -- --------------------------------------------------------
 
@@ -157,24 +150,23 @@ INSERT INTO `scanned` (`id`, `userid`, `productid`, `create_at`) VALUES
 -- Table structure for table `sensor`
 --
 
-DROP TABLE IF EXISTS `sensor`;
-CREATE TABLE IF NOT EXISTS `sensor` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sensor` (
+  `id` int(11) NOT NULL,
   `farmid` int(11) NOT NULL,
   `des` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `mac` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `farmid` (`farmid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sensor`
 --
 
-INSERT INTO `sensor` (`id`, `farmid`, `des`, `mac`) VALUES
-(1, 2, '123123', '123123'),
-(2, 2, '123123', '123123'),
-(3, 2, '25', '25');
+INSERT INTO `sensor` (`id`, `farmid`, `des`, `mac`, `create_at`) VALUES
+(1, 2, '123123', '123123', '2020-01-09 09:53:46'),
+(2, 2, '123123', '123123', '2020-01-09 09:53:46'),
+(3, 2, '25', '25', '2020-01-09 09:53:46'),
+(4, 2, 'Bộ cảm biến 01', 'AA:VV:CD:8E:2D:32', '2020-01-09 10:02:08');
 
 -- --------------------------------------------------------
 
@@ -182,18 +174,14 @@ INSERT INTO `sensor` (`id`, `farmid`, `des`, `mac`) VALUES
 -- Table structure for table `sensorlogs`
 --
 
-DROP TABLE IF EXISTS `sensorlogs`;
-CREATE TABLE IF NOT EXISTS `sensorlogs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sensorlogs` (
+  `id` int(11) NOT NULL,
   `sensorid` int(11) NOT NULL,
   `productid` int(11) NOT NULL,
-  `avg_tem` float NOT NULL DEFAULT '0',
-  `avg_hum` float NOT NULL DEFAULT '0',
-  `avg_humS` float NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `sensorid` (`sensorid`),
-  KEY `productid` (`productid`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `avg_tem` float NOT NULL DEFAULT 0,
+  `avg_hum` float NOT NULL DEFAULT 0,
+  `avg_humS` float NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `sensorlogs`
@@ -203,7 +191,10 @@ INSERT INTO `sensorlogs` (`id`, `sensorid`, `productid`, `avg_tem`, `avg_hum`, `
 (3, 1, 7, 0, 0, 0),
 (4, 1, 8, 23, 23, 23),
 (5, 1, 9, 22, 22, 22),
-(6, 3, 10, 24, 24, 24);
+(6, 3, 10, 24, 24, 24),
+(7, 1, 11, 0, 0, 0),
+(8, 1, 12, 0, 0, 0),
+(9, 1, 13, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -211,17 +202,14 @@ INSERT INTO `sensorlogs` (`id`, `sensorid`, `productid`, `avg_tem`, `avg_hum`, `
 -- Table structure for table `source`
 --
 
-DROP TABLE IF EXISTS `source`;
-CREATE TABLE IF NOT EXISTS `source` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `source` (
+  `id` int(11) NOT NULL,
   `providerid` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `des` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `providerld` (`providerid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `source`
@@ -243,19 +231,16 @@ INSERT INTO `source` (`id`, `providerid`, `name`, `des`, `create_at`, `hash`) VA
 -- Table structure for table `transport`
 --
 
-DROP TABLE IF EXISTS `transport`;
-CREATE TABLE IF NOT EXISTS `transport` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `transport` (
+  `id` int(11) NOT NULL,
   `transportid` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `des` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `quantity` int(11) NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `pre_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `transportid` (`transportid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `transport`
@@ -271,16 +256,14 @@ INSERT INTO `transport` (`id`, `transportid`, `name`, `des`, `quantity`, `create
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `des` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `role` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `username` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user`
@@ -292,6 +275,133 @@ INSERT INTO `user` (`id`, `name`, `des`, `role`, `username`, `password`) VALUES
 (3, 'Nhà phân phối XYZ', '789 đường Nào Đó, quận Nào Đó, thành phố Nào Đó', 'transporter', 'transporter01@charasa.com', '12345'),
 (4, 'Cửa hàng Charasa 001', '234 đường Nào Đó, quận Nào Đó, thành phố Nào Đó', 'store', 'store01@charasa.com', '12345'),
 (5, 'Huy Tran', '1 nngười dùng lào đó', 'user', 'tranhuy', 'tranhuy');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `farming`
+--
+ALTER TABLE `farming`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `farmid` (`farmid`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `storeid` (`storeid`);
+
+--
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `productid` (`productid`);
+
+--
+-- Indexes for table `scanned`
+--
+ALTER TABLE `scanned`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`),
+  ADD KEY `productid` (`productid`);
+
+--
+-- Indexes for table `sensor`
+--
+ALTER TABLE `sensor`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `farmid` (`farmid`);
+
+--
+-- Indexes for table `sensorlogs`
+--
+ALTER TABLE `sensorlogs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sensorid` (`sensorid`),
+  ADD KEY `productid` (`productid`);
+
+--
+-- Indexes for table `source`
+--
+ALTER TABLE `source`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `providerld` (`providerid`);
+
+--
+-- Indexes for table `transport`
+--
+ALTER TABLE `transport`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `transportid` (`transportid`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `farming`
+--
+ALTER TABLE `farming`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `scanned`
+--
+ALTER TABLE `scanned`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `sensor`
+--
+ALTER TABLE `sensor`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `sensorlogs`
+--
+ALTER TABLE `sensorlogs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `source`
+--
+ALTER TABLE `source`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `transport`
+--
+ALTER TABLE `transport`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
