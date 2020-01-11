@@ -179,10 +179,13 @@
                               </div>
                               <div class="card-footer text-white border-success">
                                   <!--<td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">-->
+                                  <?php if($harvested->isApproved==1) {?>
                                   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal<?=$harvested->id;?>">
                                       Generate QR
                                   </button>
-
+                                    <?php } else{?>
+                                    <label class="text-black-50">Waiting for approval!</label>
+                                  <?php } ?>
                                   <!-- Modal -->
                                   <div class="modal fade" id="Modal<?=$harvested->id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                       <div class="modal-dialog" role="document">
