@@ -76,7 +76,7 @@ class Transport
                             LEFT JOIN farming ON farming.hash = transport.pre_hash
                             WHERE transport.pre_hash IN ( 
                                 SELECT farming.hash FROM farming WHERE farming.farmid = :farmid
-                            )
+                            ) AND transport.isApproved = FALSE
                             ORDER BY transport.create_at DESC;");
         $req->bindValue(':farmid', $farmid);
         $req->execute();
