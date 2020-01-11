@@ -11,10 +11,18 @@
                 <a class="nav-link" href="./?controller=source">
                     <i class="nav-icon cil-clipboard"></i> Manage Source</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./?controller=source&action=approval">
+                    <i class="nav-icon cil-task"></i> Approval Requests</a>
+            </li>
         <?php } else if($_SESSION['user']['role']=='farm') { ?>
             <li class="nav-item">
                 <a class="nav-link" href="./?controller=farming">
                     <i class="nav-icon cil-plant"></i> Manage Farm</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./?controller=farming&action=approval">
+                    <i class="nav-icon cil-task"></i> Approval Requests</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./?controller=sensor">
@@ -24,6 +32,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="./?controller=transport">
                     <i class="nav-icon cil-locomotive"></i> Manage Transport</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="./?controller=transport&action=approval">
+                    <i class="nav-icon cil-task"></i> Approval Requests</a>
             </li>
         <?php } else if($_SESSION['user']['role']=='store') { ?>
             <li class="nav-item">
