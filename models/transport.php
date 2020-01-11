@@ -9,8 +9,9 @@ class Transport
     public $create_at;
     public $pre_hash;
     public $hash;
+    public $isApproved;
 
-    function __construct($id, $transportid, $name, $des, $quantity, $create_at, $pre_hash, $hash)
+    function __construct($id, $transportid, $name, $des, $quantity, $create_at, $pre_hash, $hash, $isApproved)
     {
         $this->id = $id;
         $this->transportid = $transportid;
@@ -20,35 +21,7 @@ class Transport
         $this->create_at = $create_at;
         $this->pre_hash = $pre_hash;
         $this->hash = $hash;
-    }
-
-    static function find($hash)
-    {
-        // Find in DB with hash
-    }
-
-    function execHash()
-    {
-        $hash = hash('sha256', $this->id . $this->name . $this->des . $this->quantity . $this->create_at . $this->pre_hash);
-    }
-
-    function addInformation($quantity)
-    {
-        $this->quantity = $quantity;
-
-        execHash();
-
-        // Update DB
-    }
-
-    function isValid()
-    {
-        // Check if pre hash is in DB Farming
-    }
-
-    function insertDB()
-    {
-        //Add source to database
+        $this->isApproved = $isApproved;
     }
 
     static function findbyTransporter($transportid)
@@ -60,7 +33,7 @@ class Transport
         $req->bindValue(':transportid',$transportid);
         $req->execute();
         foreach ($req->fetchAll() as $item) {
-            $list[] = new Transport($item['id'], $item['transportid'], $item['name'], $item['des'], $item['quantity'],$item['create_at'],NULL,  $item['hash']);
+            $list[] = new Transport($item['id'], $item['transportid'], $item['name'], $item['des'], $item['quantity'],$item['create_at'],NULL,  $item['hash'], $item['isApproved']);
         }
         return $list;
     }
@@ -94,5 +67,41 @@ class Transport
         else return 0;
     }
 
+    static function findUnapprovedTransport($farmid)
+    {
+        $list = [];
+        $db = DB::getInstance();
+        $req = $db->prepare("SELECT DISTINCT user.name as username, user.des as userdes, transport.*, farming.name as `farmname`, farming.des as `farmdes`
+                            FROM (user LEFT JOIN transport ON user.id = transport.transportid)
+                            LEFT JOIN farming ON farming.hash = transport.pre_hash
+                            WHERE transport.pre_hash IN ( 
+                                SELECT farming.hash FROM farming WHERE farming.farmid = :farmid
+                            )
+                            ORDER BY transport.create_at DESC;");
+        $req->bindValue(':farmid', $farmid);
+        $req->execute();
+        foreach($req->fetchAll() as $item)
+        {
+            $templist = [];
+            $templist["transport_id"] = $item['id'];
+            $templist["transporter_name"] = $item['username'];
+            $templist["transporter_des"] = $item['userdes'];
+            $templist["farm_name"] = $item['farmname'];
+            $templist["farm_des"] = $item['farmdes'];
+            $templist["quantity"] = $item['quantity'];
+            $templist["create_at"] = $item['create_at'];
+            $list[] = $templist;
+        }
+
+        return $list;
+    }
+
+    static function approveTrans($transportid)
+    {
+        $db = DB::getInstance();
+        $req = $db->prepare("UPDATE transport SET isApproved = TRUE WHERE id = :transportid;");
+        $req->bindValue(':transportid', $transportid);
+        $req->execute();
+    }
 }
 ?>

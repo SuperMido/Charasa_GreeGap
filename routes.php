@@ -13,7 +13,7 @@
 		case 'farm':
 			$controllers = array(
 			  'pages' => ['home', 'error','product'],
-			  'farming'=>['index', 'add','harvest'],
+			  'farming'=>['index', 'add','harvest','approval'],
 			  'sensor' => ['index', 'add'],
 			  'scanned' => ['index'],
 			  'rating' => ['index', 'add','thankyou']

@@ -1,6 +1,7 @@
 <?php
 require_once('controllers/base_controller.php');
 require_once('models/farming.php');
+require_once('models/transport.php');
 
 class FarmingController extends BaseController
 {
@@ -20,8 +21,8 @@ class FarmingController extends BaseController
 
   function harvest()
   {
-        Farming::harvest($_GET['id']);
-        header("Location: index.php?controller=farming");
+    Farming::harvest($_GET['id']);
+    header("Location: index.php?controller=farming");
   }
 
   function add()
@@ -37,6 +38,19 @@ class FarmingController extends BaseController
         $data = array('products' => $products, 'sensors' => $sensors,'harvesteds'=>$harvesteds,'is_legit'=>$check);
         $this->render('index', $data);
     }
+  }
+
+  function approval()
+  {
+    $unapprovedTrans = Transport::findUnapprovedTransport($_SESSION['user']['id']);
+    $data = array('unapprovedTrans' => $unapprovedTrans);
+    $this->render('approval', $data);
+  }
+
+  function approve()
+  {
+    Transport::approveTrans($_GET['id']);
+    header("Location: index.php?controller=farming&action=approval");
   }
 
 //  function sensor()

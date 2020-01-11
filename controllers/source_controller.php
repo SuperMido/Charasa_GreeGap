@@ -27,4 +27,9 @@ class SourceController extends BaseController
     $data = array('unapprovedFarm' => $unapprovedFarm);
     $this->render('approval', $data);
   }
+  function approve()
+  {
+    Farming::approveFarm($_GET['id']);
+    header("Location: index.php?controller=source&action=approval");
+  }
 }

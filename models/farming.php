@@ -191,6 +191,14 @@ class Farming
         else return 0;
     }
 
+    static function approveFarm($farmid)
+    {
+        $db = DB::getInstance();
+        $req = $db->prepare("UPDATE farming SET isApproved = TRUE WHERE id = :farmid;");
+        $req->bindValue(':farmid', $farmid);
+        $req->execute();
+    }
+
     static function findUnapprovedFarming($providerid)
     {
         $list = [];
