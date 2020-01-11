@@ -25,11 +25,9 @@ class PagesController extends BaseController
       $hash = $_GET['hash'];
       $qrInfo = Product::fetchAllData($hash);
       if($qrInfo!=0){
-      //     $ratings = Rating::findbyProduct($productInfo['product_id']);
+        $ratings = Rating::findbyHash($hash);
         if($_SESSION['user']['role'] != "Anonymous") Scanned::add($_SESSION['user']['id'], $hash);
-      //     $data = array('productInfo' => $productInfo, 'ratings' => $ratings);
-      //     $this->api('product', $data);
-        $data = array('qrInfo' => $qrInfo);
+        $data = array('qrInfo' => $qrInfo, 'ratings' => $ratings);
         $this->api('product', $data);
       }
       else {

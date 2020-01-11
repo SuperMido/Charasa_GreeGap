@@ -43,11 +43,11 @@
         <?php } else { ?>
             <li class="nav-item">
                 <a class="nav-link" href="./?controller=rating">
-                    <i class="nav-icon fa fa-star-half-o"></i> Rated Product</a>
+                    <i class="nav-icon fa fa-star-half-o"></i> Rated QR Code</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="./?controller=scanned">
-                    <i class="nav-icon fa fa-check-square-o"></i> Scanned Product</a>
+                    <i class="nav-icon fa fa-check-square-o"></i> Scanned QR Code</a>
             </li>
           <li class="nav-item">
                 <a class="nav-link" href="./logout.php">

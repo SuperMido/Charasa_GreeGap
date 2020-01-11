@@ -17,7 +17,7 @@ class RatingController extends BaseController
   }
   function add()
   {
-    Rating::add($_SESSION['user']['id'],$_POST['productid'],$_POST['rate'], $_POST['quantity'], $_POST['feedback']);
+    Rating::add($_SESSION['user']['id'],$_POST['hash'],$_POST['rating'], $_POST['feedback']);
     header("Location: index.php?controller=rating&action=thankyou");
   }
   function thankyou()

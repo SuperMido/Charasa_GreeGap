@@ -2,20 +2,20 @@
     <div class="alert alert-danger" role="alert">You have scanned a fake QR Code! Please try again or contact authors for further details!</div>
 <?php } else{
 $i = 0;?>
-<!-- <div class="card">
+<div class="card">
     <div class="card-header"><strong>User Feedback</strong></div>
     <div class="card-body">
         <div class="bd-example">
             <dl class="row">
-            <?php //foreach ($ratings as $rating) { ?>
-                <dt class="col-sm-2"><?//$rating->username;?></dt>
-                <dd class="col-sm-2"><input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-readonly value="<?//$rating->rating;?>"/></dd>
-                <dd class="col-sm-8"><?//$rating->feedback;?></dd>
-            <?php //} ?>
+            <?php foreach ($ratings as $rating) { ?>
+                <dt class="col-sm-2"><?=$rating->username;?></dt>
+                <dd class="col-sm-2"><input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" data-readonly value="<?=$rating->rating;?>"/></dd>
+                <dd class="col-sm-8"><?=$rating->feedback;?></dd>
+            <?php } ?>
             </dl>
         </div>
     </div>
-</div> -->
+</div>
 <?php if(isset($qrInfo['product_name'])) { ?>
 <div class="card">
     <div class="card-header"><strong>Product</strong> information</div>
@@ -121,23 +121,17 @@ $i = 0;?>
     </div>
 </div>
 <?php } ?>
-<!-- <?php //if($_SESSION['user']['role'] != "Anonymous") { ?>
+<?php if($_SESSION['user']['role'] != "Anonymous") { ?>
 <div class="card">
     <div class="card-header"> <strong>Write</strong> Feedback </div>
     <div class="card-body">
     <form id="frmChange" class="form-horizontal" action="./?controller=rating&action=add" method="post" enctype="multipart/form-data">
         <div class="form-group row">
-            <input type="hidden" id="productid" name="productid" value="<?//$qrInfo['product_id'];?>"/>
+            <input type="hidden" id="hash" name="hash" value="<?=$qrInfo['hash'][0];?>"/>
             <div class="col-md-9">
-                <input type="hidden" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" value="5"/>
+                <input type="hidden" name="rating" id="rating" class="rating" data-filled="fa fa-star" data-empty="fa fa-star-o" value="5"/>
             </div>
             <input type="hidden" id="rate" name="rate" value="5"/>
-        </div>
-        <div class="form-group row">
-            <label for="quantity" class="col-md-3 col-form-label">Quantity:</label>
-            <div class="col-md-9">
-                <input type="number" class="form-control" id="quantity" name="quantity" required>
-            </div>
         </div>
         <div class="form-group row">
             <label class="col-md-3 col-form-label" for="text-input">Feedback</label>
@@ -151,16 +145,15 @@ $i = 0;?>
     <div class="card-footer">
     <button class="btn btn-sm btn-primary" type="submit" onclick="return submitForm();">
         <i class="fa fa-dot-circle-o"></i> Add</button>
-    Script for required
+    <!-- Script for required -->
     <script type="text/javascript" language="javascript">
         function submitForm()
         {
-            document.getElementById('rate').value = $('input').rating('rate');
             document.getElementById('frmChange').submit();
         }
     </script>
     </div>
 </div>
-<?php //} ?> -->
+<?php } ?>
 <script src="assets/node_modules/bootstrap/dist/js/bootstrap-rating.min.js"></script>
 <?php } ?>
