@@ -5,23 +5,6 @@
       <?php }?>
       <div class="card-header"> <strong>Add</strong> Farm item </div>
     <div class="card">
-
-      <!--<div class="card-body">
-        <form id="frmChange" class="form-horizontal" action="./?controller=source&action=add" method="post" enctype="multipart/form-data">
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">Name</label>
-            <div class="col-md-9">
-              <input class="form-control" id="text-input" type="text" name="name">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label" for="text-input">Description</label>
-            <div class="col-md-9">
-              <input class="form-control" id="text-input" type="text" name="des">
-            </div>
-          </div>
-        </form>
-      </div>-->
       <div class="card-footer">
           <script>
               window.console = window.console || function(t) {};
@@ -137,132 +120,113 @@
     <div class="card">
       <div class="card-header"> <strong>List</strong> of items currently in your Farm </div>
       <div class="card-body">
-        <table class="table table-responsive-sm table-bordered">
-                <thead class="thead-light">
-                  <tr>
-                    <th class="text-center align-middle" style="width:5%">ID</th>
-                    <th class="text-center align-middle" style="width:30%">Name</th>
-                    <th class="text-center align-middle" style="width:45%">Description</th>
-                    <th class="text-center align-middle" style="width:20%">Date Created</th>
-                    <th class="text-center align-middle" style="width:20%">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-          <?php foreach ($products as $product) { ?>
-          <tr>
-            <td class="text-center align-middle">
-              <div><?=$product->id;?> <div>
-            </td>
-            <td class="align-middle">
-              <div><?=$product->name;?><div>
-            </td>
-            <td class="align-middle">
-              <div><?=$product->des;?><div>
-            </td>
-            <td class="text-center align-middle">
-              <div><?=$product->create_at;?><div>
-            </td>
-            <td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">
-                <a href="./index.php?controller=farming&action=harvest&id=<?=$product->id;?>"><button type="button" class="btn btn-primary">
-                    Harvest
-                </button></a>
-            </td>
-          </tr>
-          <?php } ?>
-          </tbody>
-        </table>
+          <div class="row">
+              <?php foreach ($products as $product) { ?>
+                  <div class="col-md-3">
+                      <div class="card">
+                          <div class="card-header"><strong>Item ID: <?=$product->id;?> </strong></div>
+                          <div class="card-body">
+                              <div class="bd-example">
+                                  <dl class="row">
+                                      <dt class="col-sm-12">Item name:</dt>
+                                      <dd class="col-sm-12"><?=$product->name;?></dd>
+                                      <dt class="col-sm-12">Item description:</dt>
+                                      <dd class="col-sm-12"><?=$product->des;?></dd>
+                                      <dt class="col-sm-12">Item's create date: </dt>
+                                      <dd class="col-sm-12"><?=$product->create_at;?></dd>
+                                  </dl>
+                              </div>
+                          </div>
+                          <div class="card-footer">
+                              <!--<td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">-->
+                              <a href="./index.php?controller=farming&action=harvest&id=<?=$product->id;?>"><button type="button" class="btn btn-primary">
+                                      Harvest
+                                  </button></a>
+                          </div>
+                      </div>
+                  </div>
+              <?php } ?>
+          </div>
       </div>
     </div>
       <div class="card">
           <div class="card-header"> <strong>List</strong> of items harvested from your Farm </div>
           <div class="card-body">
-              <table class="table table-responsive-sm table-bordered">
-                  <thead class="thead-light">
-                  <tr>
-
-                      <th class="text-center align-middle" style="width:15%">Name</th>
-                      <th class="text-center align-middle" style="width:20%">Description</th>
-                      <th class="text-center align-middle" style="width:10%">Date Created</th>
-                      <th class="text-center align-middle" style="width:10%">Date Updated</th>
-                      <th class="text-center align-middle" style="width:10%">Avg temp (°C)</th>
-                      <th class="text-center align-middle" style="width:10%">Avg hum (%)</th>
-                      <th class="text-center align-middle" style="width:10%">Avg soil hum (%)</th>
-                      <th class="text-center align-middle" style="width:154%">Action</th>
-                  </tr>
-                  </thead>
-                  <tbody>
+              <div class="row">
                   <?php foreach ($harvesteds as $harvested) { ?>
-                      <tr>
+                      <div class="col-md-3">
+                          <div class="card text-white bg-success">
+                              <div class="card-header"><strong>Product ID: <?=$harvested->id;?> </strong></div>
+                              <div class="card-body">
+                                  <div class="bd-example">
+                                      <dl class="row">
+                                          <dt class="col-sm-12">Product name:</dt>
+                                          <dd class="col-sm-12"><?=$harvested->name;?></dd>
+                                          <dt class="col-sm-12">Product description:</dt>
+                                          <dd class="col-sm-12"><?=$harvested->des;?></dd>
+                                          <dt class="col-sm-12">Product's planting date: </dt>
+                                          <dd class="col-sm-12"><?=$harvested->create_at;?></dd>
+                                          <dt class="col-sm-12">Product's harvested date: </dt>
+                                          <dd class="col-sm-12"><?=$harvested->update_at;?></dd>
+                                          <dt class="col-sm-12">Average temperature (°C) log: </dt>
+                                          <dd class="col-sm-12"><?=$harvested->avg_tem;?></dd>
+                                          <dt class="col-sm-12">Average humidity (%) log: </dt>
+                                          <dd class="col-sm-12"><?=$harvested->avg_hum;?></dd>
+                                          <dt class="col-sm-12">Average soil's humidity (%) log: </dt>
+                                          <dd class="col-sm-12"><?=$harvested->avg_humS;?></dd>
+                                      </dl>
+                                  </div>
+                              </div>
+                              <div class="card-footer text-white border-success">
+                                  <!--<td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">-->
+                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal<?=$harvested->id;?>">
+                                      Generate QR
+                                  </button>
 
-                          <td class="align-middle">
-                              <div><?=$harvested->name;?><div>
-                          </td>
-                          <td class="align-middle">
-                              <div><?=$harvested->des;?><div>
-                          </td>
-                          <td class="text-center align-middle">
-                              <div><?=$harvested->create_at;?><div>
-                          </td>
-                          <td class="text-center align-middle">
-                              <div><?=$harvested->update_at;?><div>
-                          </td>
-                          <td class="text-center align-middle">
-                              <div><?=$harvested->avg_tem;?><div>
-                          </td>
-                          <td class="text-center align-middle">
-                              <div><?=$harvested->avg_hum;?><div>
-                          </td>
-                          <td class="text-center align-middle">
-                              <div><?=$harvested->avg_humS;?><div>
-                          </td>
-                          <td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">
-                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal<?=$harvested->id;?>">
-                                  Generate QR
-                              </button>
+                                  <!-- Modal -->
+                                  <div class="modal fade" id="Modal<?=$harvested->id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">QR Code</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                              </div>
 
-                              <!-- Modal -->
-                              <div class="modal fade" id="Modal<?=$harvested->id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
-                                      <div class="modal-content">
-                                          <div class="modal-header">
-                                              <h5 class="modal-title" id="exampleModalLabel">QR Code</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                              </button>
-                                          </div>
+                                              <div class="modal-body" id="qrcode">
+                                                  <img src="https://qrickit.com/api/qr.php?qrsize=250&d=<?=$harvested->hash;?>">
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                  <button type="button" class="btn btn-primary" onclick="myFunction('qrcode')">Print</button>
+                                                  <script>
+                                                      function myFunction(divId) {
+                                                          var content = document.getElementById(divId).outerHTML;
+                                                          var mywindow = window.open('', 'Print', 'height=600,width=800');
 
-                                          <div class="modal-body" id="qrcode">
-                                              <img src="https://qrickit.com/api/qr.php?qrsize=250&d=<?=$harvested->hash;?>">
-                                          </div>
-                                          <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                              <button type="button" class="btn btn-primary" onclick="myFunction('qrcode')">Print</button>
-                                              <script>
-                                                  function myFunction(divId) {
-                                                      var content = document.getElementById(divId).outerHTML;
-                                                      var mywindow = window.open('', 'Print', 'height=600,width=800');
+                                                          mywindow.document.write('<html><head><title>Print</title>');
+                                                          mywindow.document.write('</head><body>');
+                                                          mywindow.document.write(content);
+                                                          mywindow.document.write('</body></html>');
 
-                                                      mywindow.document.write('<html><head><title>Print</title>');
-                                                      mywindow.document.write('</head><body>');
-                                                      mywindow.document.write(content);
-                                                      mywindow.document.write('</body></html>');
-
-                                                      mywindow.document.close();
-                                                      mywindow.focus();
-                                                      setTimeout(function(){mywindow.print();mywindow.close();}, 400);
-                                                      return true;
-                                                  }
-                                              </script>
+                                                          mywindow.document.close();
+                                                          mywindow.focus();
+                                                          setTimeout(function(){mywindow.print();mywindow.close();}, 400);
+                                                          return true;
+                                                      }
+                                                  </script>
+                                              </div>
                                           </div>
                                       </div>
                                   </div>
+                                  <!--</td>-->
                               </div>
-                          </td>
-                      </tr>
+                          </div>
+                      </div>
                   <?php } ?>
-                  </tbody>
-              </table>
-          </div>
+              </div>
+              </div>
       </div>
   </div>
 </div>
