@@ -208,7 +208,7 @@ class Farming
                             LEFT JOIN source ON source.hash = farming.pre_hash
                             WHERE farming.pre_hash IN ( 
                                 SELECT source.hash FROM source WHERE source.providerid = :providerid
-                            )
+                            ) AND farming.isApproved = FALSE
                             ORDER BY farming.create_at DESC;");
         $req->bindValue(':providerid', $providerid);
         $req->execute();
