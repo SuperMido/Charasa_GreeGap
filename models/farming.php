@@ -151,7 +151,7 @@ class Farming
 //            ob_start();
 //            var_dump($item);
 //            $sensorList[] = ob_get_clean();
-            $sensorList[] = new Sensor($item['id'], $item['farmid'], $item['des'], $item['mac']);
+            $sensorList[] = new Sensor($item['id'], $item['farmid'], $item['des'], $item['mac'], $item['create_at']);
         }
         return $sensorList;
     }
