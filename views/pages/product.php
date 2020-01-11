@@ -1,6 +1,7 @@
 <?php if($qrInfo==0){?>
     <div class="alert alert-danger" role="alert">You have scanned a fake QR Code! Please try again or contact authors for further details!</div>
-<?php } else{?>
+<?php } else{
+$i = 0;?>
 <!-- <div class="card">
     <div class="card-header"><strong>User Feedback</strong></div>
     <div class="card-body">
@@ -19,6 +20,9 @@
 <div class="card">
     <div class="card-header"><strong>Product</strong> information</div>
     <div class="card-body">
+        <div class="text-center">
+            <img src="https://qrickit.com/api/qr.php?qrsize=250&d=<?=$qrInfo['hash'][$i++];?>">
+        </div>
         <div class="bd-example">
             <dl class="row">
                 <dt class="col-sm-4">Product name</dt>
@@ -44,12 +48,6 @@
                 <dd class="col-sm-8"><?=$qrInfo['quantity'];?></dd>
                 </dl>
         </div>
-
-        <!--<td class="" style="">
-            <div class="form-group"><strong>Store</strong> name: </div>
-            <div class="form-group"><strong>Store</strong> description: <?=$qrInfo['store_des'];?></div>
-            <div class="form-group"><strong>Imported</strong> amount: <?=$qrInfo['quantity'];?></div>
-        </td>-->
     </div>
 </div>
 <?php } ?>
@@ -57,6 +55,9 @@
 <div class="card">
     <div class="card-header"><strong>Transporter</strong> information</div>
     <div class="card-body">
+        <div class="text-center">
+            <img src="https://qrickit.com/api/qr.php?qrsize=250&d=<?=$qrInfo['hash'][$i++];?>">
+        </div>
         <div class="bd-example">
             <dl class="row">
                 <dt class="col-sm-4">Transporter name</dt>
@@ -74,6 +75,9 @@
 <div class="card">
     <div class="card-header"><strong>Farm</strong> information</div>
     <div class="card-body">
+        <div class="text-center">
+            <img src="https://qrickit.com/api/qr.php?qrsize=250&d=<?=$qrInfo['hash'][$i++];?>">
+        </div>
         <div class="bd-example">
             <dl class="row">
                 <dt class="col-sm-4">Farm name</dt>
@@ -99,6 +103,9 @@
 <div class="card">
     <div class="card-header"><strong>Seed's Provider</strong> information</div>
     <div class="card-body">
+        <div class="text-center">
+            <img src="https://qrickit.com/api/qr.php?qrsize=250&d=<?=$qrInfo['hash'][$i++];?>">
+        </div>
         <div class="bd-example">
             <dl class="row">
                 <dt class="col-sm-4">Seed's provider name</dt>

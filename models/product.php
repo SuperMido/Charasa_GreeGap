@@ -23,6 +23,8 @@ class Product
     static function fetchDataProduct($hash)
     {
         $list = [];
+        $list['hash'] = [];
+        $list['hash'][] = $hash;
 
         $db = DB::getInstance();
 
@@ -35,6 +37,7 @@ class Product
         $list["product_name"]=$item['name'];
         $list["product_des"]=$item['des'];
         $list["product_create"]=$item['create_at'];
+        $list["hash"][] = $item['pre_hash'];
         $pre_hash = $item['pre_hash'];
         $storeid = $item['storeid'];
 
@@ -52,6 +55,7 @@ class Product
         $req->execute();
         $item = $req->fetch();
         $list["quantity"]=$item['quantity'];
+        $list["hash"][] = $item['pre_hash'];
         $pre_hash = $item['pre_hash'];
         $transportid = $item['transportid'];
 
@@ -73,6 +77,7 @@ class Product
         $list["avg_humS"]=$item['avg_humS'];
         $list["create_at"]=$item['create_at'];
         $list["update_at"]=$item['update_at'];
+        $list["hash"][] = $item['pre_hash'];
         $pre_hash = $item['pre_hash'];
         $farmid = $item['farmid'];
 
@@ -107,6 +112,8 @@ class Product
     static function fetchDataTransport($hash)
     {
         $list = [];
+        $list['hash'] = [];
+        $list['hash'][] = $hash;
 
         $db = DB::getInstance();
 
@@ -116,6 +123,7 @@ class Product
         $req->execute();
         $item = $req->fetch();
         $list["quantity"]=$item['quantity'];
+        $list["hash"][] = $item['pre_hash'];
         $pre_hash = $item['pre_hash'];
         $transportid = $item['transportid'];
 
@@ -137,6 +145,7 @@ class Product
         $list["avg_humS"]=$item['avg_humS'];
         $list["create_at"]=$item['create_at'];
         $list["update_at"]=$item['update_at'];
+        $list["hash"][] = $item['pre_hash'];
         $pre_hash = $item['pre_hash'];
         $farmid = $item['farmid'];
 
@@ -171,6 +180,8 @@ class Product
     static function fetchDataFarming($hash)
     {
         $list = [];
+        $list['hash'] = [];
+        $list['hash'][] = $hash;
 
         $db = DB::getInstance();
 
@@ -184,6 +195,7 @@ class Product
         $list["avg_humS"]=$item['avg_humS'];
         $list["create_at"]=$item['create_at'];
         $list["update_at"]=$item['update_at'];
+        $list["hash"][] = $item['pre_hash'];
         $pre_hash = $item['pre_hash'];
         $farmid = $item['farmid'];
 
@@ -218,6 +230,8 @@ class Product
     static function fetchDataSource($hash)
     {
         $list = [];
+        $list['hash'] = [];
+        $list['hash'][] = $hash;
 
         $db = DB::getInstance();
 
@@ -272,100 +286,12 @@ class Product
                     $req->execute();
                     $item = $req->fetch();
                     if(isset($item['providerid'])) $list = self::fetchDataSource($hash);
+                    else return 0;
                 }
             }
         }
 
-        if(count($list) > 0) return $list;
-        else return 0;
-
-        // $req = $db->prepare("SELECT * FROM transport WHERE hash = :hash;");
-        // $req->bindValue(':hash',$hash);
-        // $req->execute();
-        // $item = $req->fetch();
-        // foreach ($req->fetchAll() as $item) {
-        //     $list["product_id"] = $item['id'];
-        //     $list["product_name"]=$item['name'];
-        //     $list["product_des"]=$item['des'];
-        //     $list["product_create"]=$item['create_at'];
-        //     //$list[0] = new Product($item['id'], $item['storeid'], $item['name'], $item['des'] ,$item['create_at'], NULL,  $item['hash']);
-        //     $pre_hash = $item['pre_hash'];
-        //     $userid = $item['storeid'];
-        // }
-        // if(!empty($list["product_id"])){
-        //     $req = $db->prepare("SELECT * FROM user WHERE id = :userid;");
-        //     $req->bindValue(':userid',$userid);
-        //     $req->execute();
-        //     foreach ($req->fetchAll() as $item) {
-        //         $list["store_name"]=$item['name'];
-        //         $list["store_des"]=$item['des'];
-        //     }
-
-        //     $req = $db->prepare("SELECT * FROM transport WHERE hash = :hash;");
-        //     $req->bindValue(':hash',$pre_hash);
-        //     $req->execute();
-        //     foreach ($req->fetchAll() as $item) {
-        //         $list["quantity"]=$item['quantity'];
-        //         $pre_hash = $item['pre_hash'];
-        //         $userid = $item['transportid'];
-
-        //         //$list[1] = new Transport($item['id'], $item['transportid'], $item['name'], $item['des'], $item['quantity'] ,$item['create_at'], NULL,  $item['hash']);
-        //         //$pre_hash = $item['pre_hash'];
-        //     }
-
-        //     $req = $db->prepare("SELECT * FROM user WHERE id = :userid;");
-        //     $req->bindValue(':userid',$userid);
-        //     $req->execute();
-        //     foreach ($req->fetchAll() as $item) {
-        //         $list["transporter_name"]=$item['name'];
-        //         $list["transporter_des"]=$item['des'];
-        //     }
-
-        //     $req = $db->prepare("SELECT * FROM farming WHERE hash = :hash;");
-        //     $req->bindValue(':hash',$pre_hash);
-        //     $req->execute();
-        //     foreach ($req->fetchAll() as $item) {
-        //         //$list[2] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'],$item['avg_temp'],$item['avg_hum'], $item['avg_humS'],$item['create_at'], NULL,  $item['hash'],$item['update_at']);
-        //         $list["avg_tem"]=$item['avg_tem'];
-        //         $list["avg_hum"]=$item['avg_hum'];
-        //         $list["avg_humS"]=$item['avg_humS'];
-        //         $list["create_at"]=$item['create_at'];
-        //         $list["update_at"]=$item['update_at'];
-        //         $pre_hash = $item['pre_hash'];
-        //         $userid = $item['farmid'];
-        //     }
-
-        //     $req = $db->prepare("SELECT * FROM user WHERE id = :userid;");
-        //     $req->bindValue(':userid',$userid);
-        //     $req->execute();
-        //     foreach ($req->fetchAll() as $item) {
-        //         $list["farm_name"]=$item['name'];
-        //         $list["farm_des"]=$item['des'];
-        //     }
-
-        //     $req = $db->prepare("SELECT * FROM source WHERE hash = :hash;");
-        //     $req->bindValue(':hash',$pre_hash);
-        //     $req->execute();
-        //     foreach ($req->fetchAll() as $item) {
-        //         $list["seed_name"]=$item['name'];
-        //         $list["seed_des"]=$item['des'];
-        //         //$list["seed_create_at"]=$item['create_at'];
-        //         $userid = $item['providerid'];
-        //         //$list[3] = new Source($item['id'], $item['providerid'], $item['name'], $item['des'],$item['create_at'], NULL);
-        //     }
-
-        //     $req = $db->prepare("SELECT * FROM user WHERE id = :userid;");
-        //     $req->bindValue(':userid',$userid);
-        //     $req->execute();
-        //     foreach ($req->fetchAll() as $item) {
-        //         $list["source_name"]=$item['name'];
-        //         $list["source_des"]=$item['des'];
-        //     }
-
-        //     return $list;
-        // }
-        // else return 0;
-
+        return $list;
     }
 
     static function findAddedbyStore($storeid)
