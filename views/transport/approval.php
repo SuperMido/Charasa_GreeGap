@@ -21,7 +21,7 @@
                                             <dt class="col-sm-12">Item description:</dt>
                                             <dd class="col-sm-12"><?=$source["transport_des"];?></dd>
                                             <dt class="col-sm-12">Item quantity:</dt>
-                                            <dd class="col-sm-12"><?//$source["quantity"];?></dd>
+                                            <dd class="col-sm-12"><?=$source["product_quantity"];?></dd>
                                             <dt class="col-sm-12">Item's create date: </dt>
                                             <dd class="col-sm-12"><?=$source["create_at"];?></dd>
                                         </dl>

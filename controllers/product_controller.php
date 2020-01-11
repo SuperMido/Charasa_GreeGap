@@ -18,7 +18,7 @@ class ProductController extends BaseController
 
   function add()
   {
-    $check = Product::add($_SESSION['user']['id'],$_POST['name'],$_POST['des'],$_POST['pre_hash']);
+    $check = Product::add($_SESSION['user']['id'],$_POST['name'],$_POST['des'], $_POST['quantity'],$_POST['pre_hash']);
     if ($check==1){
         header("Location: index.php?controller=product");
     }

@@ -107,6 +107,10 @@
                                       <label for="des" class="col-form-label">Description:</label>
                                       <textarea class="form-control" id="des" name="des"></textarea>
                                   </div>
+                                  <div class="form-group">
+                                      <label for="quantity" class="col-form-label">Quantity:</label>
+                                      <input type="number" class="form-control" id="quantity" name="quantity" required>
+                                  </div>
                               </form>
                           </div>
                           <div class="modal-footer">

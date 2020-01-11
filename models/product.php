@@ -5,17 +5,19 @@ class Product
     public $storeid;
     public $name;
     public $des;
+    public $quantity;
     public $create_at;
     public $pre_hash;
     public $hash;
     public $isApproved;
 
-    function __construct($id, $storeid, $name, $des, $create_at, $pre_hash, $hash, $isApproved)
+    function __construct($id, $storeid, $name, $des, $quantity, $create_at, $pre_hash, $hash, $isApproved)
     {
         $this->id = $id;
         $this->storeid = $storeid;
         $this->name = $name;
         $this->des = $des;
+        $this->quantity = $quantity;
         $this->create_at = $create_at;
         $this->pre_hash = $pre_hash;
         $this->hash = $hash;
@@ -38,6 +40,7 @@ class Product
         $list["product_id"] = $item['id'];
         $list["product_name"]=$item['name'];
         $list["product_des"]=$item['des'];
+        $list["product_quantity"] = $item['quantity'];
         $list["product_create"]=$item['create_at'];
         $list["hash"][] = $item['pre_hash'];
         $pre_hash = $item['pre_hash'];
@@ -305,12 +308,12 @@ class Product
         $req->bindValue(':storeid',$storeid);
         $req->execute();
         foreach ($req->fetchAll() as $item) {
-            $list[] = new Product($item['id'], $item['storeid'], $item['name'], $item['des'] ,$item['create_at'], $item['pre_hash'],  $item['hash'], $item['isApproved']);
+            $list[] = new Product($item['id'], $item['storeid'], $item['name'], $item['des'], $item['quantity'] ,$item['create_at'], $item['pre_hash'],  $item['hash'], $item['isApproved']);
         }
         return $list;
     }
 
-    static function add($storeid, $name, $des, $pre_hash)
+    static function add($storeid, $name, $des, $quantity, $pre_hash)
     {
         $date = getCurrentDate();
 
@@ -324,11 +327,12 @@ class Product
         }
         if(!empty($prev)){
 
-            $hash = hash('sha256', $storeid . $name . $des . $date . $pre_hash);
-        $req = $db->prepare("INSERT INTO product(storeid, name, des, create_at, pre_hash, hash)  VALUES (:storeid, :name, :des, :create_at,:pre_hash, :hash);");
+            $hash = hash('sha256', $storeid . $name . $des .$quantity . $date . $pre_hash);
+        $req = $db->prepare("INSERT INTO product(storeid, name, des, quantity, create_at, pre_hash, hash)  VALUES (:storeid, :name, :des, :quantity, :create_at,:pre_hash, :hash);");
         $req->bindValue(':storeid', $storeid);
         $req->bindValue(':name', $name);
         $req->bindValue(':des', $des);
+        $req->bindValue(':quantity', $quantity);
         $req->bindValue(':create_at', $date);
         $req->bindValue(':pre_hash', $pre_hash);
         $req->bindValue(':hash', $hash);
@@ -357,6 +361,7 @@ class Product
             $templist["product_id"] = $item['id'];
             $templist["store_name"] = $item['username'];
             $templist["store_des"] = $item['userdes'];
+            $templist["product_quantity"] = $item['quantity'];
             $templist["transport_name"] = $item['transportname'];
             $templist["transport_des"] = $item['transportdes'];
             $templist["create_at"] = $item['create_at'];

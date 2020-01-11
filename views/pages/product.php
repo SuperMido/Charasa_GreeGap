@@ -45,7 +45,7 @@ $i = 0;?>
                 <dt class="col-sm-4">Store description</dt>
                 <dd class="col-sm-8"><?=$qrInfo['store_des'];?></dd>
                 <dt class="col-sm-4">Product's imported amount </dt>
-                <dd class="col-sm-8"><?=$qrInfo['quantity'];?></dd>
+                <dd class="col-sm-8"><?=$qrInfo['product_quantity'];?></dd>
                 </dl>
         </div>
     </div>
