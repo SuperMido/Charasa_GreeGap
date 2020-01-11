@@ -8,8 +8,9 @@ class Product
     public $create_at;
     public $pre_hash;
     public $hash;
+    public $isApproved;
 
-    function __construct($id, $storeid, $name, $des, $create_at, $pre_hash, $hash)
+    function __construct($id, $storeid, $name, $des, $create_at, $pre_hash, $hash, $isApproved)
     {
         $this->id = $id;
         $this->storeid = $storeid;
@@ -18,6 +19,7 @@ class Product
         $this->create_at = $create_at;
         $this->pre_hash = $pre_hash;
         $this->hash = $hash;
+        $this->isApproved = $isApproved;
     }
 
     static function fetchDataProduct($hash)
@@ -303,7 +305,7 @@ class Product
         $req->bindValue(':storeid',$storeid);
         $req->execute();
         foreach ($req->fetchAll() as $item) {
-            $list[] = new Product($item['id'], $item['storeid'], $item['name'], $item['des'] ,$item['create_at'], $item['pre_hash'],  $item['hash']);
+            $list[] = new Product($item['id'], $item['storeid'], $item['name'], $item['des'] ,$item['create_at'], $item['pre_hash'],  $item['hash'], $item['isApproved']);
         }
         return $list;
     }
@@ -336,28 +338,40 @@ class Product
         else return 0;
     }
 
-    function isCheating()
+    static function findUnapprovedProduct($transportid)
     {
-        // Get count from Sold return to $countDB
-        // Get quantity from Transport return to $quantityDB
-        if($countDB > $quantityDB)
-            return true;
-        return false;
+        $list = [];
+        $db = DB::getInstance();
+        $req = $db->prepare("SELECT DISTINCT user.name as username, user.des as userdes, product.*, transport.name as `transportname`, transport.des as `transportdes`
+                            FROM (user LEFT JOIN product ON user.id = product.storeid)
+                            LEFT JOIN transport ON transport.hash = product.pre_hash
+                            WHERE product.pre_hash IN ( 
+                                SELECT transport.hash FROM transport WHERE transport.transportid = :transportid
+                            ) AND product.isApproved = FALSE
+                            ORDER BY product.create_at DESC;");
+        $req->bindValue(':transportid', $transportid);
+        $req->execute();
+        foreach($req->fetchAll() as $item)
+        {
+            $templist = [];
+            $templist["product_id"] = $item['id'];
+            $templist["store_name"] = $item['username'];
+            $templist["store_des"] = $item['userdes'];
+            $templist["transport_name"] = $item['transportname'];
+            $templist["transport_des"] = $item['transportdes'];
+            $templist["create_at"] = $item['create_at'];
+            $list[] = $templist;
+        }
+
+        return $list;
     }
 
-    function execHash()
+    static function approveProduct($productid)
     {
-        $hash = hash('sha256', $this->id . $this->name . $this->des . $this->quantity . $this->create_at . $this->pre_hash);
-    }
-
-    function isValid()
-    {
-        // Check if pre hash is in DB Transport
-    }
-
-    function insertDB()
-    {
-        //Add source to database
+        $db = DB::getInstance();
+        $req = $db->prepare("UPDATE product SET isApproved = TRUE WHERE id = :productid;");
+        $req->bindValue(':productid', $productid);
+        $req->execute();
     }
 }
 ?>

@@ -1,6 +1,7 @@
 <?php
 require_once('controllers/base_controller.php');
 require_once('models/transport.php');
+require_once('models/product.php');
 
 class TransportController extends BaseController
 {
@@ -27,6 +28,19 @@ class TransportController extends BaseController
         $data = array('products' => $products,'is_legit'=>0);
         $this->render('index', $data);
     }
+  }
+
+  function approval()
+  {
+    $unapprovedProduct = Product::findUnapprovedProduct($_SESSION['user']['id']);
+    $data = array('unapprovedProduct' => $unapprovedProduct);
+    $this->render('approval', $data);
+  }
+
+  function approve()
+  {
+    Product::approveProduct($_GET['id']);
+    header("Location: index.php?controller=transport&action=approval");
   }
 
 //  function sensor()

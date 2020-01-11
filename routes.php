@@ -22,7 +22,7 @@
 		case 'transporter':
 			$controllers = array(
 			  'pages' => ['home', 'error','product'],
-			  'transport' => ['index', 'add'],
+			  'transport' => ['index', 'add', 'approval', 'approve'],
 			  'scanned' => ['index'],
 			  'rating' => ['index', 'add','thankyou']
 			);
