@@ -5,7 +5,7 @@
 		case 'provider':
 			$controllers = array(
 			  'pages' => ['home', 'error','product'],
-			  'source' => ['index', 'add','approval'],
+			  'source' => ['index', 'add','approval', 'approve'],
 			  'scanned' => ['index'],
 			  'rating' => ['index', 'add','thankyou']
 			);
@@ -13,7 +13,7 @@
 		case 'farm':
 			$controllers = array(
 			  'pages' => ['home', 'error','product'],
-			  'farming'=>['index', 'add','harvest','approval'],
+			  'farming'=>['index', 'add','harvest','approval', 'approve'],
 			  'sensor' => ['index', 'add'],
 			  'scanned' => ['index'],
 			  'rating' => ['index', 'add','thankyou']
