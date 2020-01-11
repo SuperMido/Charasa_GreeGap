@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 11, 2020 at 01:30 PM
+-- Generation Time: Jan 11, 2020 at 03:31 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS `farming` (
 --
 
 INSERT INTO `farming` (`id`, `farmid`, `name`, `des`, `avg_tem`, `avg_hum`, `avg_humS`, `create_at`, `pre_hash`, `hash`, `update_at`, `isApproved`) VALUES
-(1, 2, 'Chậu giá sạch 001', 'trồng trong nhà kính', 25, 25, 25, '2020-01-08 04:11:07', 'hatgiong001', 'nongtrai01-chaugia001', '2020-01-08 04:11:07', 0),
-(7, 2, '23', '23', 0, 0, 0, '2020-01-08 09:49:51', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', 'b61b1f6a3db5184406acc9d86579ad20cd6f38827b9794c77e1819cbb7b9c89f', '2020-01-08 09:49:51', 0),
+(1, 2, 'Chậu giá sạch 001', 'trồng trong nhà kính', 25, 25, 25, '2020-01-08 04:11:07', 'hatgiong001', 'nongtrai01-chaugia001', '2020-01-08 04:11:07', 1),
+(7, 2, '23', '23', 0, 0, 0, '2020-01-08 09:49:51', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', 'b61b1f6a3db5184406acc9d86579ad20cd6f38827b9794c77e1819cbb7b9c89f', '2020-01-08 09:49:51', 1),
 (8, 2, '24', '24', 0, 0, 0, '2020-01-08 09:51:57', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '477d14903b3884f37cd641ff288f7d5a94c169429313cf7e7f4e7863ae1c6ae8', '2020-01-08 09:51:57', 0),
 (9, 2, '25', '25', 22, 22, 22, '2020-01-08 09:54:04', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '55477eeb42829df8b8200ceb45574b4bc9ad576ff5adf86fa4b7730ca6a5ce92', '2020-01-08 09:55:54', 0),
 (10, 2, '29', '29', 24, 24, 24, '2020-01-08 09:57:51', '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '9b102b6bd442cb2a5b642cdcf7058eda55c704287010c13e1cad15ea883e9680', '2020-01-08 09:58:11', 0),
@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `storeid` int(11) NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `des` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `quantity` int(11) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `pre_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -84,12 +85,11 @@ CREATE TABLE IF NOT EXISTS `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `storeid`, `name`, `des`, `create_at`, `pre_hash`, `hash`, `isApproved`) VALUES
-(1, 4, 'Giá sạch 001', 'nhận đủ 5kg từ npp', '2020-01-08 04:15:56', 'npp01-giasach001', 'cuahang01-giasach001', 0),
-(2, 4, '123123', '123123', '2020-01-08 10:00:09', '551c36c2931871d93714b6ab9dafd2ac6a3084d8a56d95e23171ad4a1b8755b8', 'd45d08aa25d788ddeda31c252b29d007086013a7adaae0b7b0cbc31af64cb52f', 0),
-(3, 4, '1', '1', '2020-01-08 17:54:52', '551c36c2931871d93714b6ab9dafd2ac6a3084d8a56d95e23171ad4a1b8755b8', 'b3039ba270da595046208cced4cf04a45ed2261675da314fa4dd2945ffc41035', 0),
-(4, 4, '2', '2', '2020-01-08 17:55:01', '551c36c2931871d93714b6ab9dafd2ac6a3084d8a56d95e23171ad4a1b8755b8', 'a2717dbb6e74bf9db056f269f06c91b9fe5f4ad1cd77a44f7a5b85696fd589d3', 0),
-(5, 4, '3', '3', '2020-01-08 17:55:07', '', 'f679da2775fc66f8ea10743f971e7ed8c11e236d3e889c0062e12f3f124416d3', 0);
+INSERT INTO `product` (`id`, `storeid`, `name`, `des`, `quantity`, `create_at`, `pre_hash`, `hash`, `isApproved`) VALUES
+(2, 4, '123123', '123123', 0, '2020-01-08 10:00:09', '551c36c2931871d93714b6ab9dafd2ac6a3084d8a56d95e23171ad4a1b8755b8', 'd45d08aa25d788ddeda31c252b29d007086013a7adaae0b7b0cbc31af64cb52f', 0),
+(3, 4, '1', '1', 0, '2020-01-08 17:54:52', '551c36c2931871d93714b6ab9dafd2ac6a3084d8a56d95e23171ad4a1b8755b8', 'b3039ba270da595046208cced4cf04a45ed2261675da314fa4dd2945ffc41035', 0),
+(4, 4, '2', '2', 0, '2020-01-08 17:55:01', '551c36c2931871d93714b6ab9dafd2ac6a3084d8a56d95e23171ad4a1b8755b8', 'a2717dbb6e74bf9db056f269f06c91b9fe5f4ad1cd77a44f7a5b85696fd589d3', 0),
+(5, 4, '3', '3', 0, '2020-01-08 17:55:07', '', 'f679da2775fc66f8ea10743f971e7ed8c11e236d3e889c0062e12f3f124416d3', 0);
 
 -- --------------------------------------------------------
 
