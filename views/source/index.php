@@ -37,7 +37,7 @@
           <div class="row">
               <?php foreach ($sources as $source) { ?>
               <div class="col-md-3">
-                  <div class="card text-white bg-success">
+                  <div class="card">
                       <div class="card-header"><strong>Item ID: <?=$source->id;?> </strong></div>
                       <div class="card-body">
                           <div class="bd-example">
@@ -51,7 +51,7 @@
                               </dl>
                           </div>
                       </div>
-                      <div class="card-footer text-white border-success">
+                      <div class="card-footer">
                           <!--<td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">-->
                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal<?=$source->id;?>">
                               Generate QR
