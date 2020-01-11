@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 11, 2020 at 03:55 AM
+-- Generation Time: Jan 11, 2020 at 06:50 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -99,23 +99,25 @@ DROP TABLE IF EXISTS `rating`;
 CREATE TABLE IF NOT EXISTS `rating` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userid` int(11) NOT NULL,
-  `productid` int(11) NOT NULL,
+  `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `rating` int(11) NOT NULL,
-  `count` int(11) NOT NULL,
   `feedback` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  KEY `userid` (`userid`),
-  KEY `productid` (`productid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  KEY `userid` (`userid`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `rating`
 --
 
-INSERT INTO `rating` (`id`, `userid`, `productid`, `rating`, `count`, `feedback`, `create_at`) VALUES
-(1, 5, 1, 4, 10, 'Alo alo', '2020-01-08 18:39:54'),
-(2, 5, 1, 5, 2342, '234\r\n', '2020-01-08 19:42:44');
+INSERT INTO `rating` (`id`, `userid`, `hash`, `rating`, `feedback`, `create_at`) VALUES
+(1, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', 5, 'Vip pro', '2020-01-11 06:27:53'),
+(3, 2, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', 4, 'Vip hơi pro', '2020-01-11 06:34:07'),
+(4, 3, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', 4, 'qwe', '2020-01-11 06:37:22'),
+(5, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', 5, '123qwe', '2020-01-11 06:48:51'),
+(6, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', 4, 'wer12e', '2020-01-11 06:49:03'),
+(7, 4, 'd45d08aa25d788ddeda31c252b29d007086013a7adaae0b7b0cbc31af64cb52f', 5, 'Rất tốt', '2020-01-11 06:49:26');
 
 -- --------------------------------------------------------
 
@@ -131,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `scanned` (
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `userid` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `scanned`
@@ -139,7 +141,33 @@ CREATE TABLE IF NOT EXISTS `scanned` (
 
 INSERT INTO `scanned` (`id`, `userid`, `hash`, `create_at`) VALUES
 (1, 4, '551c36c2931871d93714b6ab9dafd2ac6a3084d8a56d95e23171ad4a1b8755b8', '2020-01-11 03:54:59'),
-(2, 4, 'd45d08aa25d788ddeda31c252b29d007086013a7adaae0b7b0cbc31af64cb52f', '2020-01-11 03:55:12');
+(2, 4, 'd45d08aa25d788ddeda31c252b29d007086013a7adaae0b7b0cbc31af64cb52f', '2020-01-11 03:55:12'),
+(3, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 05:50:11'),
+(4, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 05:50:42'),
+(5, 4, '9b102b6bd442cb2a5b642cdcf7058eda55c704287010c13e1cad15ea883e9680', '2020-01-11 05:50:56'),
+(6, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:21:54'),
+(7, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:22:07'),
+(8, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:22:22'),
+(9, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:22:32'),
+(10, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:23:51'),
+(11, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:26:02'),
+(12, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:27:58'),
+(13, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:28:11'),
+(14, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:32:30'),
+(15, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:32:42'),
+(16, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:34:25'),
+(17, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:34:42'),
+(18, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:37:49'),
+(19, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:37:59'),
+(20, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:40:15'),
+(21, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:44:13'),
+(22, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:45:03'),
+(23, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:46:34'),
+(24, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:48:40'),
+(25, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:48:56'),
+(26, 4, '15de2611ed9e805bcc88ee8d50224dc344fc2df36449eb0dadc8de708fa7c197', '2020-01-11 06:49:08'),
+(27, 4, 'd45d08aa25d788ddeda31c252b29d007086013a7adaae0b7b0cbc31af64cb52f', '2020-01-11 06:49:18'),
+(28, 4, 'd45d08aa25d788ddeda31c252b29d007086013a7adaae0b7b0cbc31af64cb52f', '2020-01-11 06:49:31');
 
 -- --------------------------------------------------------
 
@@ -308,7 +336,6 @@ ALTER TABLE `product`
 -- Constraints for table `rating`
 --
 ALTER TABLE `rating`
-  ADD CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`productid`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`userid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
