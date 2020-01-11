@@ -200,14 +200,32 @@ class Farming
         else return 0;
     }
 
-    function isValid()
+    static function findUnapprovedFarming($providerid)
     {
-        // Check if pre hash is in DB Source
-    }
+        $list = [];
+        $db = DB::getInstance();
+        $req = $db->prepare("SELECT DISTINCT user.name as username, user.des as userdes, farming.*, source.name as `sourcename`, source.des as `sourcedes`
+                            FROM (user LEFT JOIN farming ON user.id = farming.farmid)
+                            LEFT JOIN source ON source.hash = farming.pre_hash
+                            WHERE farming.pre_hash IN ( 
+                                SELECT source.hash FROM source WHERE source.providerid = :providerid
+                            )
+                            ORDER BY farming.create_at DESC;");
+        $req->bindValue(':providerid', $providerid);
+        $req->execute();
+        foreach($req->fetchAll() as $item)
+        {
+            $templist = [];
+            $templist["farm_id"] = $item['id'];
+            $templist["farmer_name"] = $item['username'];
+            $templist["farmer_des"] = $item['userdes'];
+            $templist["source_name"] = $item['sourcename'];
+            $templist["source_des"] = $item['sourcedes'];
+            $templist["create_at"] = $item['create_at'];
+            $list[] = $templist;
+        }
 
-    function insertDB()
-    {
-        //Add source to database
+        return $list;
     }
 }
 ?>

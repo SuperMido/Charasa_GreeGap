@@ -5,7 +5,7 @@
 		case 'provider':
 			$controllers = array(
 			  'pages' => ['home', 'error','product'],
-			  'source' => ['index', 'add'],
+			  'source' => ['index', 'add','approval'],
 			  'scanned' => ['index'],
 			  'rating' => ['index', 'add','thankyou']
 			);
