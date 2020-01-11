@@ -32,8 +32,9 @@ class Farming
     public $update_at;
     public $pre_hash;
     public $hash;
+    public $isApproved;
 
-    function __construct($id,$farmid, $name, $des, $avg_tem, $avg_hum, $avg_humS, $create_at, $pre_hash, $hash, $update_at)
+    function __construct($id,$farmid, $name, $des, $avg_tem, $avg_hum, $avg_humS, $create_at, $pre_hash, $hash, $update_at, $isApproved)
     {
         $this->id = $id;
         $this->farmid = $farmid;
@@ -46,16 +47,7 @@ class Farming
         $this->pre_hash = $pre_hash;
         $this->hash = $hash;
         $this->update_at = $update_at;
-    }
-
-    static function find($hash)
-    {
-        // Find in DB with hash
-    }
-
-    function execHash()
-    {
-        $hash = hash('sha256', $this->id .$this->farmid . $this->name . $this->des . $this->avg_tem . $this->avg_hum . $this->avg_humS . $this->create_at . $this->update_at . $this->pre_hash);
+        $this->isApproved = $isApproved;
     }
 
     static function harvest($id)
@@ -64,7 +56,6 @@ class Farming
         $date = getCurrentDate();
         //$hash = hash('sha256', $farmid . $name . $des . $pre_hash);
         $db = DB::getInstance();
-        $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING );
         $req = $db->prepare("SELECT * FROM sensorlogs WHERE productid = :id;");
         $req->bindValue(':id',$id);
         $req->execute();
@@ -92,7 +83,7 @@ class Farming
         $req->bindValue('id',$id);
         $req->execute();
         foreach ($req->fetchAll() as $item){
-            $prod[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], $item['avg_tem'],$item['avg_hum'],$item['avg_humS'],  $item['create_at'],$item['pre_hash'], $item['hash'],$item['update_at']);
+            $prod[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], $item['avg_tem'],$item['avg_hum'],$item['avg_humS'],  $item['create_at'],$item['pre_hash'], $item['hash'],$item['update_at'], $item['isApproved']);
         }
         $final = $prod[0];
         $hash = hash('sha256', $final->id . $final->farmid . $final->name . $final->des. $final->avg_tem. $final->avg_hum. $final->avg_humS. $final->create_at. $final->pre_hash. $final->update_at);
@@ -121,7 +112,7 @@ class Farming
         $req->bindValue(':farmid',$farmid);
         $req->execute();
         foreach ($req->fetchAll() as $item) {
-            $list[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], NULL,NULL,NULL,  $item['create_at'],NULL, NULL,NULL);
+            $list[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], NULL,NULL,NULL,  $item['create_at'],NULL, NULL,NULL, $item['isApproved']);
         }
         return $list;
     }
@@ -135,7 +126,7 @@ class Farming
         $req->bindValue(':farmid',$farmid);
         $req->execute();
         foreach ($req->fetchAll() as $item) {
-            $list[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], $item['avg_tem'],$item['avg_hum'],$item['avg_humS'],  $item['create_at'],NULL, $item['hash'],$item['update_at']);
+            $list[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], $item['avg_tem'],$item['avg_hum'],$item['avg_humS'],  $item['create_at'],NULL, $item['hash'],$item['update_at'], $item['isApproved']);
         }
         return $list;
     }
@@ -185,7 +176,7 @@ class Farming
             $req2->bindValue('id',$id);
             $req2->execute();
             foreach ($req2->fetchAll() as $item){
-                $new[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], NULL , NULL , NULL ,  $item['create_at'],$item['update_at'],$item['pre_hash'], $item['hash']);
+                $new[] = new Farming($item['id'], $item['farmid'], $item['name'], $item['des'], NULL , NULL , NULL ,  $item['create_at'],$item['update_at'],$item['pre_hash'], $item['hash'], $item['isApproved']);
             }
 
             $productid = $new[0];
