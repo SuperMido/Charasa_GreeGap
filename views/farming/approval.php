@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <!--<td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">-->
-                                    <a href="./index.php?controller=source&action=approve&id=<?=$source["transport_id"];?>"><button type="button" class="btn btn-primary">
+                                    <a href="./index.php?controller=farming&action=approve&id=<?=$source["transport_id"];?>"><button type="button" class="btn btn-primary">
                                             Approve
                                         </button></a>
                                 </div>
