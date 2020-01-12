@@ -155,7 +155,7 @@
                           <div class="card-footer">
                               <!--<td id="genHash" class="text-center align-middle" action="#" method="post" enctype="multipart/form-data">-->
                               <?php if($product->isApproved==1) {?>
-                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal<?=$harvested->id;?>">
+                                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal<?=$product->id;?>">
                                       Generate QR
                                   </button>
                               <?php } else{?>
@@ -173,7 +173,7 @@
                                               </button>
                                           </div>
 
-                                          <div class="modal-body" id="qrcode">
+                                          <div class="modal-body text-center" id="qrcode">
                                               <img src="https://qrickit.com/api/qr.php?qrsize=250&d=<?=$product->hash;?>">
                                           </div>
                                           <div class="modal-footer">

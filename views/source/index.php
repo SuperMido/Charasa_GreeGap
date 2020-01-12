@@ -68,7 +68,7 @@
                                           </button>
                                       </div>
 
-                                      <div class="modal-body" id="qrcode">
+                                      <div class="modal-body text-center" id="qrcode">
                                           <img src="https://qrickit.com/api/qr.php?qrsize=250&d=<?=$source->hash;?>">
                                       </div>
                                       <div class="modal-footer">
